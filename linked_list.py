@@ -10,13 +10,13 @@ class LinkedList(_Node):
         self.tail = None
         self.length = 0
 
-    def print_list(self):
+    def print_list(self) -> None:
         current = self.head
         while (current):
             print(current.item)
             current = current.next
 
-    def append(self, item):
+    def append(self, item) -> None:
         """
         Method for adding element at the end of link list
         Args:
@@ -33,7 +33,7 @@ class LinkedList(_Node):
         self.length += 1
         return True
 
-    def pop(self):
+    def pop(self) -> _Node | None:
         """
         Method for removing element at the end of link list
         """
@@ -53,7 +53,7 @@ class LinkedList(_Node):
             self.head = self.tail = None
         return current
 
-    def prepend(self, item):
+    def prepend(self, item) -> bool:
         """
         Method for adding an element at the begining of the list
         Args:
@@ -70,7 +70,7 @@ class LinkedList(_Node):
         self.length += 1
         return True
 
-    def pop_first(self):
+    def pop_first(self) -> _Node | None:
         """
         Method for removing the first element from the list
         """
@@ -78,15 +78,17 @@ class LinkedList(_Node):
         if self.head is None:
             return None
         # case 2: if list have muliple elements
-        current = self.head
-        self.head = self.head.next
-        current.next = None
-        self.length -= 1
+        else:
+            current = self.head
+            self.head = self.head.next
+            current.next = None
+            self.length -= 1
+            return current
         # case 3: if the list have only have one element
         if self.length == 0:
             self.head = self.tail = None
 
-    def get_by_index(self, index):
+    def get_by_index(self, index) -> _Node | None:
         """
         returns the element at the given index 
         Args:
@@ -101,7 +103,7 @@ class LinkedList(_Node):
             current = current.next
         return current
 
-    def set_value_by_index(self, value, index):
+    def set_value_by_index(self, value, index) -> bool:
         """
         Set the value at the given index
         Args:
@@ -114,7 +116,7 @@ class LinkedList(_Node):
             return True
         return False
 
-    def insert(self, value, index):
+    def insert(self, value, index) -> bool:
         """
         insert a particular value at a particular index
         Args:
@@ -134,10 +136,51 @@ class LinkedList(_Node):
         self.length += 1
         return True
 
+    def remove(self, index) -> _Node | None:
+        """
+        remove an item from a particular index.
+        Args:
+            index (int):the item that should be removed form the given index
+        """
+        if index < 0 or index >= self.length:
+            return None
+        if index == 0:
+            return self.pop_first()
+        if index == (self.length - 1):
+            return self.pop()
+        previous = self.get_by_index(index - 1)
+        current = previous.next
+        previous.next = current.next
+        current.next = None
+        self.length -= 1
+        return current
+
+    def index_of(self, value) -> int | None:
+        """
+        return the index of the first occurance of the particular item
+        Args:
+            value (int): the item for search
+        """
+        current = self.head
+        index = 0
+        while current:
+            if current.item == value:
+                return index
+            index += 1
+            current = current.next
+        return None
+
+    def contains(self, value) -> bool:
+        """
+        Method returns if the given value is present in the list
+        Args:
+            value (int): the value to found
+        """
+        return True if self.index_of(value) is not None else False
+
 
 linked_list = LinkedList()
-linked_list.append(1)
+linked_list.append(10)
 linked_list.append(2)
 linked_list.append(3)
-linked_list.insert(10, 4)
-linked_list.print_list()
+print(linked_list.contains(1))
