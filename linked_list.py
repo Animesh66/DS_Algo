@@ -178,9 +178,28 @@ class LinkedList(_Node):
         """
         return True if self.index_of(value) is not None else False
 
+    def reverse(self) -> None:
+        """
+        Reverse a given link list
+        """
+        # fliping the value of tail and head first
+        current = self.head
+        self.head = self.tail
+        self.tail = current
+        after = current.next  # set the value of after variable to point to next node
+        before = None  # set a before variable to None
+        #  running a loop to reverse the connections of the nodes
+        for _ in range(self.length):
+            after = current.next  # set the value of after to the next value of curent
+            current.next = before  # flip the connection between two node
+            before = current  # move forward before variable
+            current = after  # move forward current variable
+
 
 linked_list = LinkedList()
-linked_list.append(10)
+linked_list.append(9)
 linked_list.append(2)
 linked_list.append(3)
-print(linked_list.contains(1))
+linked_list.append(4)
+linked_list.reverse()
+linked_list.print_list()
