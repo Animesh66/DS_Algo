@@ -83,12 +83,12 @@ class LinkedList(_Node):
             self.head = self.head.next
             current.next = None
             self.length -= 1
-            return current
         # case 3: if the list have only have one element
         if self.length == 0:
             self.head = self.tail = None
+        return current
 
-    def get_by_index(self, index) -> _Node | None:
+    def get_by_index(self, index: int) -> _Node | None:
         """
         returns the element at the given index 
         Args:
@@ -103,7 +103,7 @@ class LinkedList(_Node):
             current = current.next
         return current
 
-    def set_value_by_index(self, value, index) -> bool:
+    def set_value_by_index(self, value: int, index: int) -> bool:
         """
         Set the value at the given index
         Args:
@@ -116,7 +116,7 @@ class LinkedList(_Node):
             return True
         return False
 
-    def insert(self, value, index) -> bool:
+    def insert(self, value: int, index: int) -> bool:
         """
         insert a particular value at a particular index
         Args:
@@ -136,7 +136,7 @@ class LinkedList(_Node):
         self.length += 1
         return True
 
-    def remove(self, index) -> _Node | None:
+    def remove(self, index: int) -> _Node | None:
         """
         remove an item from a particular index.
         Args:
@@ -155,7 +155,7 @@ class LinkedList(_Node):
         self.length -= 1
         return current
 
-    def index_of(self, value) -> int | None:
+    def index_of(self, value: int) -> int | None:
         """
         return the index of the first occurance of the particular item
         Args:
@@ -170,7 +170,7 @@ class LinkedList(_Node):
             current = current.next
         return None
 
-    def contains(self, value) -> bool:
+    def contains(self, value: int) -> bool:
         """
         Method returns if the given value is present in the list
         Args:
@@ -198,11 +198,33 @@ class LinkedList(_Node):
             before = current  # move forward before variable
             current = after  # move forward current variable
 
+    def find_kth_element_from_last(self, k: int) -> _Node | None:
+        """
+        Method for finding the kth element from the last at one pass
+        Args:
+            k (int): the element which needs to to be returned
+        Returns:
+            _Node: The desired node to return
+        """
+        # case 1: check if the value of k is valid or not
+        if k <= 0 or k > self.length:
+            return None
+        # case 2: if the value of k is valid
+        first = second = self.head
+        # move forward the second node at a distance of (k-1) position from first node
+        for _ in range(k-1):
+            second = second.next
+        # now move forward both the nodes until the second node becomes the last node
+        while (second != self.tail):
+            first = first.next
+            second = second.next
+        return first.item
+
 
 linked_list = LinkedList()
 linked_list.append(3)
 linked_list.append(7)
 linked_list.append(5)
 linked_list.append(2)
-linked_list.reverse()
-linked_list.print_list()
+linked_list.append(1)
+print(linked_list.find_kth_element_from_last(k=6))
