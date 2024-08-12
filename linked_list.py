@@ -37,7 +37,7 @@ class LinkedList(_Node):
         """
         Method for removing element at the end of link list
         """
-        # case 1: if there are no items in the link list
+        # case 1: if value of k is invalid
         if self.head is None:
             return None
         # case 2: if there are more than one item in the link list
