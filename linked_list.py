@@ -182,6 +182,9 @@ class LinkedList(_Node):
         """
         Reverse a given link list
         """
+        # if the list is empty then return None
+        if self.length == 0:
+            return None
         # fliping the value of tail and head first
         current = self.head
         self.head = self.tail
@@ -197,9 +200,9 @@ class LinkedList(_Node):
 
 
 linked_list = LinkedList()
-linked_list.append(9)
-linked_list.append(2)
 linked_list.append(3)
-linked_list.append(4)
+linked_list.append(7)
+linked_list.append(5)
+linked_list.append(2)
 linked_list.reverse()
 linked_list.print_list()
