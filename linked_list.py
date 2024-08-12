@@ -218,6 +218,7 @@ class LinkedList(_Node):
         while (second != self.tail):
             first = first.next
             second = second.next
+        # return the value of first node as it is pointing to the kth node from the end of the list
         return first.item
 
 
