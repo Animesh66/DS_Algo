@@ -101,11 +101,26 @@ class DoublyLinkList(_Node):
             return True
         return False
 
+    def contains(self, value) -> bool:
+        current = self.head
+        while current:
+            if current.value == value:
+                return True
+        return False
+
+    def index_of(self, value) -> _Node | None:
+        index = 0
+        current = self.head
+        while current:
+            if current.value == value:
+                return index
+            current = current.next
+            index += 1
+        return None
+
 
 ddl = DoublyLinkList()
 ddl.append(2)
 ddl.append(3)
 ddl.append(4)
-ddl.set(10, -1)
-ddl.print_list()
-
+print(ddl.contains(10))
