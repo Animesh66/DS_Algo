@@ -1,7 +1,7 @@
 class _Node:
 
     def __init__(self, value) -> None:
-        self.value = value
+        self.value: int | str = value
         self.next = None
 
 
@@ -39,7 +39,7 @@ class Stack(_Node):
             self.top = current.next
             current.next = None
         self.length -= 1
-        return current
+        return current.value
 
     def peek(self) -> _Node | None:
         # case 1: check if the stack is empty
@@ -53,14 +53,7 @@ class Stack(_Node):
 
 
 stack = Stack()
-stack.push(4)
-stack.push(5)
-stack.push(6)
-stack.pop()
-stack.pop()
-stack.pop()
-print(stack.peek())
-print(stack.length)
-stack.print_stack()
+stack.push("a")
+stack.push("b")
+stack.push("c")
 print(stack.is_empty())
-
