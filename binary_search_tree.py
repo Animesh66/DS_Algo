@@ -37,11 +37,21 @@ class BinarySearchTree(_Node):
                     return True
                 current = current.right
 
+    def contains(self, value) -> bool:
+        # if there are items in the three then find the value
+        current = self.root
+        while current:
+            if value == current.value:
+                return True
+            if value < current.value:
+                current = current.left
+            else:
+                current = current.right
+        return False
+
 
 bst = BinarySearchTree()
 bst.insert(2)
 bst.insert(1)
 bst.insert(3)
-print(bst.root.value)
-print(bst.root.left.value)
-print(bst.root.right.value)
+print(bst.contains(1))
