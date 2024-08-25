@@ -49,9 +49,40 @@ class BinarySearchTree(_Node):
                 current = current.right
         return False
 
+    def pre_order_traverse(self, root: _Node):
+        # This is the solution for pre order traverse using recursion
+        # root -> left -> right
+        if root is None:  # This is called base condition
+            return
+        print(root.value)
+        self.pre_order_traverse(root.left)
+        self.pre_order_traverse(root.right)
+
+    def in_order_traverse(self, root: _Node):
+        # This is the solution for in order traverse using recursion
+        # left -> root -> right
+        if root is None:
+            return
+        self.in_order_traverse(root.left)
+        print(root.value)
+        self.in_order_traverse(root.right)
+
+    def post_order_traverse(self, root: _Node):
+        # This is the solution for post order traversal using recursion
+        # left -> right -> root
+        if root is None:
+            return
+        self.post_order_traverse(root.left)
+        self.post_order_traverse(root.right)
+        print(root.value)
+
 
 bst = BinarySearchTree()
-bst.insert(2)
-bst.insert(1)
-bst.insert(3)
-print(bst.contains(1))
+bst.insert(10)
+bst.insert(7)
+bst.insert(13)
+bst.insert(5)
+bst.insert(8)
+bst.insert(11)
+bst.insert(17)
+bst.post_order_traverse(root=bst.root)
