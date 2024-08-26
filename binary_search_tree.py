@@ -76,6 +76,16 @@ class BinarySearchTree(_Node):
         self.post_order_traverse(root.right)
         print(root.value)
 
+    def height(self, root: _Node) -> int:
+        # case 1: check if the three is empty
+        if root is None:
+            return -1
+        # case 2: set up base condition. if the Node is a leaf node then height is 0.
+        if root.left is None and root.right is None:
+            return 0
+        # case 3: for all other scenarios use recursion to get the height
+        return (1 + max(self.height(root.left), self.height(root.right)))
+
 
 bst = BinarySearchTree()
 bst.insert(10)
@@ -85,4 +95,4 @@ bst.insert(5)
 bst.insert(8)
 bst.insert(11)
 bst.insert(17)
-bst.post_order_traverse(root=bst.root)
+print(bst.height(root=bst.root))
