@@ -86,6 +86,33 @@ class BinarySearchTree(_Node):
         # case 3: for all other scenarios use recursion to get the height
         return (1 + max(self.height(root.left), self.height(root.right)))
 
+    def find_minimum(self) -> int:
+        """
+        This test will find the minimum value in a banry search three
+        """
+        # case 1: when the tree is empty
+        if self.root is None:
+            return None
+        # case 2: when three has item in it
+        current = self.root
+        last = current
+        while current is not None:
+            last = current
+            current = current.left
+        return last.value
+
+    def find_minimum_in_binary_three(self, root: _Node | int) -> _Node:
+        """
+        This method will find the minimum value in a binary search three
+        """
+        # create base condition for recustion when the node is a leaf node then we will terminate search
+        if root.left is None and root.right is None:
+            return root.value
+        left = self.find_minimum_in_binary_three(root.left)
+        right = self.find_minimum_in_binary_three(root.right)
+        min_value = min(min(left, right), root.value)
+        return min_value
+
 
 bst = BinarySearchTree()
 bst.insert(10)
@@ -95,4 +122,5 @@ bst.insert(5)
 bst.insert(8)
 bst.insert(11)
 bst.insert(17)
-print(bst.height(root=bst.root))
+# bst.insert(2)
+print(bst.find_minimum_in_binary_three(bst.root))
