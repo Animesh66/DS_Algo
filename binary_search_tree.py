@@ -160,6 +160,23 @@ class BinarySearchTree(_Node):
 
         return left_node and right_node
 
+    def __get_nodes_at_distance(self, root: _Node, distance: int) -> None:
+        """
+        This method will print all the nodes at a given distance from root
+        """
+        if not root:
+            return
+        # This is the base condition of the recursion
+        if distance == 0:
+            print(root.value)
+            return
+        #  if there distance is greater than 0 then trigger recursion
+        self.__get_nodes_at_distance(root.left, distance - 1)
+        self.__get_nodes_at_distance(root.right, distance - 1)
+
+    def get_nodes_at_distance(self, distance: int) -> None:
+        self.__get_nodes_at_distance(self.root, distance)
+
 
 bst = BinarySearchTree()
 bst.insert(10)
@@ -178,4 +195,4 @@ bst2.insert(8)
 bst2.insert(11)
 bst2.insert(17)
 # bst.insert(2)
-print(bst.is_binary_search_tree(bst.root))
+bst.get_nodes_at_distance(distance=1)
