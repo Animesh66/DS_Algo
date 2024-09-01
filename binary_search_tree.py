@@ -113,6 +113,26 @@ class BinarySearchTree(_Node):
         min_value = min(min(left, right), root.value)
         return min_value
 
+    def __equals(self, first: _Node | None, second: _Node | None) -> bool:
+        """
+        This private method will check if the node of a three are equals or not.
+        """
+        # case 1: if both trees are empty retrun false
+        if not first and not second:
+            return True
+        # case 2: if both three have values compare the values using pre order traversal if the roots are equal then compare the left and right childs.
+        if first and second:
+            return first.value == second.value and self.__equals(first.left, second.left) and self.__equals(first.right, second.right)
+        return False
+
+    def equals(self, other_tree: 'BinarySearchTree') -> bool:
+        """
+        This method will verify if two threes are equal or not.
+        """
+        if not other_tree:
+            return False
+        return self.__equals(self.root, other_tree.root)
+
 
 bst = BinarySearchTree()
 bst.insert(10)
@@ -122,5 +142,13 @@ bst.insert(5)
 bst.insert(8)
 bst.insert(11)
 bst.insert(17)
+bst2 = BinarySearchTree()
+bst2.insert(10)
+bst2.insert(7)
+bst2.insert(13)
+bst2.insert(5)
+bst2.insert(8)
+bst2.insert(11)
+bst2.insert(17)
 # bst.insert(2)
-print(bst.find_minimum_in_binary_three(bst.root))
+print(bst.equals(bst2))
