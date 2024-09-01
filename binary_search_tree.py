@@ -17,7 +17,7 @@ class BinarySearchTree(_Node):
         if self.root is None:
             self.root = new_node
             return True
-        # case 2: if there are more than one items in the three
+        # case 2: if there are  more than one items in the three
         current = self.root
         # compare the new node with current node iteratively until reach the end of the three
         while True:
@@ -76,7 +76,10 @@ class BinarySearchTree(_Node):
         self.post_order_traverse(root.right)
         print(root.value)
 
-    def height(self, root: _Node) -> int:
+    def height(self):
+        return self.__height(self.root)
+
+    def __height(self, root: _Node) -> int:
         # case 1: check if the three is empty
         if root is None:
             return -1
@@ -84,7 +87,7 @@ class BinarySearchTree(_Node):
         if root.left is None and root.right is None:
             return 0
         # case 3: for all other scenarios use recursion to get the height
-        return (1 + max(self.height(root.left), self.height(root.right)))
+        return (1 + max(self.__height(root.left), self.__height(root.right)))
 
     def find_minimum(self) -> int:
         """
@@ -181,7 +184,7 @@ class BinarySearchTree(_Node):
         """
         This method will print all the values in a tree using level first traversal
         """
-        for i in range(self.height(self.root) + 1):
+        for i in range(self.height() + 1):
             self.get_nodes_at_distance(i)
 
 
