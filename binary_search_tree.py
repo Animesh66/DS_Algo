@@ -117,7 +117,7 @@ class BinarySearchTree(_Node):
         """
         This private method will check if the node of a three are equals or not.
         """
-        # case 1: if both trees are empty retrun false
+        # case 1: if both trees are empty return false
         if not first and not second:
             return True
         # case 2: if both three have values compare the values using pre order traversal if the roots are equal then compare the left and right childs.
@@ -132,6 +132,33 @@ class BinarySearchTree(_Node):
         if not other_tree:
             return False
         return self.__equals(self.root, other_tree.root)
+
+    def is_binary_search_tree(self, root: _Node) -> bool:
+        """
+        Method that validates if the tree is a binary tree
+        """
+        return self.__is_binary_search_tree(self.root, min=-2**31, max=2**31 - 1)
+
+    def __is_binary_search_tree(self, node: _Node, min, max):
+        """
+        Method that validates if the tree is a binary tree
+        """
+        # case 1: if the tree is empty then return true as three is BST
+        if not node:
+            return True
+        # case 2: check if the value of the node is less than the minimum value and greater that maximum value
+
+        if node.value < min or node.value > max:
+            return False
+        # case 3: if the value is valid then compare the value with the left node of the node and right child of the node.
+
+        left_node = self.__is_binary_search_tree(
+            node.left, min, node.value - 1)
+        right_node = self.__is_binary_search_tree(
+            node.right, node.value + 1, max)
+        # retrun if both the nodes are in the range
+
+        return left_node and right_node
 
 
 bst = BinarySearchTree()
@@ -151,4 +178,4 @@ bst2.insert(8)
 bst2.insert(11)
 bst2.insert(17)
 # bst.insert(2)
-print(bst.equals(bst2))
+print(bst.is_binary_search_tree(bst.root))
