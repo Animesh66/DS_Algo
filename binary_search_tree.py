@@ -177,6 +177,13 @@ class BinarySearchTree(_Node):
     def get_nodes_at_distance(self, distance: int) -> None:
         self.__get_nodes_at_distance(self.root, distance)
 
+    def level_order_traversal(self):
+        """
+        This method will print all the values in a tree using level first traversal
+        """
+        for i in range(self.height(self.root) + 1):
+            self.get_nodes_at_distance(i)
+
 
 bst = BinarySearchTree()
 bst.insert(10)
@@ -195,4 +202,4 @@ bst2.insert(8)
 bst2.insert(11)
 bst2.insert(17)
 # bst.insert(2)
-bst.get_nodes_at_distance(distance=1)
+bst.level_order_traversal()
