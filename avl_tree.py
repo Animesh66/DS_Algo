@@ -25,10 +25,7 @@ class AVLTree(_Node):
         # once the child is added we need to set the hight
         root._height = max(self.__height(root.left),
                            self.__height(root.right)) + 1
-        if self.is_left_heavy(root):
-            print(f"{root.value} is left heavy.")
-        if self.is_right_heavy(root):
-            print(f"{root.value} is right heavy.")
+        self.balanced(root)
         return root
 
     def insert(self, value: int) -> int:
@@ -77,6 +74,26 @@ class AVLTree(_Node):
         """
         return self.balanced_factor(node) < -1
 
+    def balanced(self, node: _Node) -> None:
+        """
+        Returns the rotation required for an AVL tree.
+        Args:
+            node (_Node): _description_
+        """
+        if self.is_left_heavy(node):
+            # caes 1: if the tree is left heavy tree perform right rotation
+            # on root and before left rotation on left child.
+            if self.balanced_factor(node.left) < 0:
+                print(f"Left rotate {node.left.value}")
+            print(f"Right rotate {node.value}")
+        # case 2: if the tree is a right heavy tree.
+        if self.is_right_heavy(node):
+            # case 1: if the balanced factor of the right child of the node is negative
+            # case 2: if the balaced factor of the right child of the node is positive
+            if self.balanced_factor(node.right) > 0:
+                print(f"Right rotate {node.right.value}")
+            print(f"Left rotate {node.value}")
+
     def pre_order_traverse(self, root: _Node):
         # This is the solution for pre order traverse using recursion
         # root -> left -> right
@@ -88,9 +105,9 @@ class AVLTree(_Node):
 
 
 avl_tree = AVLTree()
+avl_tree.insert(10)
 avl_tree.insert(30)
 avl_tree.insert(20)
-avl_tree.insert(10)
 # avl_tree.insert(5)
 # avl_tree.insert(25)
 # avl_tree.pre_order_traverse(avl_tree.root)
