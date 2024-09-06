@@ -4,6 +4,7 @@ class _Node:
         self.value: int = value
         self.left: _Node = None
         self.right: _Node = None
+        self._height: int = 0
 
 
 class AVLTree(_Node):
@@ -21,12 +22,26 @@ class AVLTree(_Node):
         #  case 2: if the value to insert is greater that the value of the root then insert in right child.
         else:
             root.right = self.__insert(root.right, value)
-
+        # once the child is added we need to set the hight
+        root._height = max(self.__height(root.left),
+                           self.__height(root.right)) + 1
         return root
 
     def insert(self, value: int) -> int:
         # here set the value of root in the public insert method
         self.root = self.__insert(self.root, value)
+
+    def __height(self, node: _Node) -> int:
+        """
+        Helper method to calculate the height
+        Args:
+            node (_Node): _description_
+        """
+        # case 1: base condition(if the tree is empty)
+        if node is None:
+            return -1
+        # case 2: if tree is not empty then return the height
+        return node._height
 
     def pre_order_traverse(self, root: _Node):
         # This is the solution for pre order traverse using recursion
@@ -44,4 +59,5 @@ avl_tree.insert(20)
 avl_tree.insert(30)
 avl_tree.insert(5)
 avl_tree.insert(25)
-avl_tree.pre_order_traverse(avl_tree.root)
+# avl_tree.pre_order_traverse(avl_tree.root)
+print(avl_tree.root._height)
