@@ -25,6 +25,10 @@ class AVLTree(_Node):
         # once the child is added we need to set the hight
         root._height = max(self.__height(root.left),
                            self.__height(root.right)) + 1
+        if self.is_left_heavy(root):
+            print(f"{root.value} is left heavy.")
+        if self.is_right_heavy(root):
+            print(f"{root.value} is right heavy.")
         return root
 
     def insert(self, value: int) -> int:
@@ -43,6 +47,36 @@ class AVLTree(_Node):
         # case 2: if tree is not empty then return the height
         return node._height
 
+    def balanced_factor(self, node: _Node) -> int:
+        """
+        Calculate the balance factor of the tree
+        Args:
+            node (_Node): _description_
+
+        Returns:
+            int: _description_
+        """
+        return 0 if node is None else self.__height(node.left) - self.__height(node.right)
+
+    def is_left_heavy(self, node: _Node) -> bool:
+        """
+        returns true if the node is left heavy or else returns false
+        Args:
+            node (_Node): _description_
+        """
+        return self.balanced_factor(node) > 1
+
+    def is_right_heavy(self, node: _Node) -> bool:
+        """
+        This method will return true if the balanced factor is right heavy else return false
+        Args:
+            node (_Node): _description_
+
+        Returns:
+            bool: _description_
+        """
+        return self.balanced_factor(node) < -1
+
     def pre_order_traverse(self, root: _Node):
         # This is the solution for pre order traverse using recursion
         # root -> left -> right
@@ -54,10 +88,10 @@ class AVLTree(_Node):
 
 
 avl_tree = AVLTree()
-avl_tree.insert(10)
-avl_tree.insert(20)
 avl_tree.insert(30)
-avl_tree.insert(5)
-avl_tree.insert(25)
+avl_tree.insert(20)
+avl_tree.insert(10)
+# avl_tree.insert(5)
+# avl_tree.insert(25)
 # avl_tree.pre_order_traverse(avl_tree.root)
-print(avl_tree.root._height)
+# print(avl_tree.root._height)
