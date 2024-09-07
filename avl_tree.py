@@ -47,6 +47,9 @@ class AVLTree(_Node):
     def balanced_factor(self, node: _Node) -> int:
         """
         Calculate the balance factor of the tree
+        balanced factor = height(left) tree - height(right) tree
+        if the balanced factor is > 1 then the tree is left heavy
+        if the balanced factor is < -1 then the tree is right heavy
         Args:
             node (_Node): _description_
 
