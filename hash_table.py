@@ -21,7 +21,7 @@ class HashTable:
         for index, value in enumerate(self.__data_map):
             print(f"{index} : {value}")
 
-    def set_items(self, key: str, value: int) -> None:
+    def set_item(self, key: str, value: int) -> None:
         """
         Mehtod to set the value of key value pair at the given index.
         """
@@ -30,9 +30,24 @@ class HashTable:
             self.__data_map[index] = []
         self.__data_map[index].append([key, value])
 
+    def get_item(self, key: str) -> int | None:
+        """
+        Method to get the item of the given key.
+        """
+        # first get the index of the key from the hash function
+        index = self.__hash(key)
+        # go to the index of the data map and check the value exists
+        if self.__data_map[index] is not None:
+            for i in range(len(self.__data_map[index])):
+                if self.__data_map[index][i][0] == key:
+                    return self.__data_map[index][i][1]
+        return None
+
 
 hash_map = HashTable()
-hash_map.set_items('bolts', 1400)
-hash_map.set_items('washers', 50)
-hash_map.set_items('lumber', 70)
-hash_map.print_table()
+hash_map.set_item('bolts', 1400)
+hash_map.set_item('washers', 50)
+hash_map.set_item('lumber', 70)
+print(hash_map.get_item('bolts'))
+print(hash_map.get_item('abc'))
+# hash_map.print_table()
