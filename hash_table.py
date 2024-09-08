@@ -1,15 +1,15 @@
 class HashTable:
 
-    # creating a constructor with a inital list of 7(prime number) and the initial value of that list contains None.
+    # creating a constructor with an initial list of 7(prime number) and the initial value of that list contains None.
     def __init__(self, size=7) -> None:
         # A list of size 7 containing None value in each one.
         self.__data_map = [None] * size
 
-    # Now defining a hasmap which will operate on the key and return the index where to store the key value pair
+    # Now defining a hashmap which will operate on the key and return the index where to store the key-value pair
 
     def __hash(self, key: str) -> int:
         """
-        This helper method will take the key of the hash map and returns the index where to store the key value pair.
+        This helper method will take the key of the hash map and returns the index where to store the key-value pair.
         """
         hash_value = 0
         for letter in key:
@@ -23,7 +23,7 @@ class HashTable:
 
     def set_item(self, key: str, value: int) -> None:
         """
-        Mehtod to set the value of key value pair at the given index.
+        Method to set the value of key-value pair at the given index.
         """
         index = self.__hash(key)
         if self.__data_map[index] == None:
@@ -34,9 +34,9 @@ class HashTable:
         """
         Method to get the item of the given key.
         """
-        # first get the index of the key from the hash function
+        # First get the index of the key from the hash function
         index = self.__hash(key)
-        # go to the index of the data map and check the value exists
+        # Go to the index of the data map and check the value exists
         if self.__data_map[index] is not None:
             for i in range(len(self.__data_map[index])):
                 if self.__data_map[index][i][0] == key:
