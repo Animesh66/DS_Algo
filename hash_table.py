@@ -43,11 +43,23 @@ class HashTable:
                     return self.__data_map[index][i][1]
         return None
 
+    def keys(self) -> list[str]:
+        """
+        This helper method will return the all list of keys of a hash table
+        """
+        keys = []
+        for i in range(len(self.__data_map)):
+            if self.__data_map[i] is not None:
+                for j in range(len(self.__data_map[i])):
+                    keys.append(self.__data_map[i][j][0])
+        return keys
+
 
 hash_map = HashTable()
 hash_map.set_item('bolts', 1400)
 hash_map.set_item('washers', 50)
 hash_map.set_item('lumber', 70)
-print(hash_map.get_item('bolts'))
-print(hash_map.get_item('abc'))
+# print(hash_map.get_item('bolts'))
+# print(hash_map.get_item('abc'))
+print(hash_map.keys())
 # hash_map.print_table()
