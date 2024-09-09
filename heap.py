@@ -78,7 +78,7 @@ class MaxHeap:
         # case 2: if the parent does not have a right child. Then verify that
         # the left child is less than the parent
         if not self._has_right_child(index):
-            return parent >= right_child
+            return parent >= self._left_child(index)
         left_child = self._left_child(index)
         right_child = self._right_child(index)
         # case 3: In case the parent have both left and right child. Then verify both
