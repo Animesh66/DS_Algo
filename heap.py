@@ -9,6 +9,18 @@ class MaxHeap:
         """
         return (2 * index) + 1
 
+    def _right_child_index(self, index: int) -> int:
+        """
+        Method to provide the right child index of the given index.
+        """
+        return (2 * index) + 2
+
+    def _parent_index(self, index: int) -> int:
+        """
+        Method to return the parent index of the given index.
+        """
+        return (index - 1) // 2
+
     def _left_child(self, index: int) -> int:
         """
         This method will return the left child of the provided index. 
@@ -27,17 +39,17 @@ class MaxHeap:
         """
         return self.heap[self._parent_index(index)]
 
-    def _right_child_index(self, index: int) -> int:
+    def _has_left_child(self, index: int) -> bool:
         """
-        Method to provide the right child index of the given index.
+        Helper method to verify if a parent have left child.
         """
-        return (2 * index) + 2
+        return self._left_child_index(index) < len(self.heap)
 
-    def _parent_index(self, index: int) -> int:
+    def _has_right_child(self, index: int) -> bool:
         """
-        Method to return the parent index of the given index.
+        Helper method to verify if the parent have right child.
         """
-        return (index - 1) // 2
+        return self._right_child_index(index) < len(self.heap)
 
     def _swap(self, first_index: int, second_index: int) -> None:
         """
@@ -72,31 +84,6 @@ class MaxHeap:
         # case 3: In case the parent have both left and right child. Then verify both
         return parent >= left_child and parent >= right_child
 
-    def _bubbling_up(self) -> None:
-        """
-        Helper method to bubbling the value up.
-        """
-        inserted_index = len(self.heap) - 1
-        # then continue to swap the items till its bigger than the paren of
-        # index reaches to parent index of 0
-        # This method of swaping the biggher value to top is know
-        # as bubbling up the item
-        while inserted_index > 0 and not self._is_valid_child(inserted_index):
-            self._swap(inserted_index, self._parent_index(inserted_index))
-            inserted_index = self._parent_index(inserted_index)
-
-    def _has_left_child(self, index: int) -> bool:
-        """
-        Helper method to verify if a parent have left child.
-        """
-        return self._left_child_index(index) < len(self.heap)
-
-    def _has_right_child(self, index: int) -> bool:
-        """
-        Helper method to verify if the parent have right child.
-        """
-        return self._right_child_index(index) < len(self.heap)
-
     def _larger_child_index(self, index: int) -> int:
         """
         This method will return the larger child index among two child
@@ -113,6 +100,19 @@ class MaxHeap:
             if self._left_child(index) > self._right_child(index) \
             else self._right_child_index(index)
         return larger_child_index
+
+    def _bubbling_up(self) -> None:
+        """
+        Helper method to bubbling the value up.
+        """
+        inserted_index = len(self.heap) - 1
+        # then continue to swap the items till its bigger than the paren of
+        # index reaches to parent index of 0
+        # This method of swaping the biggher value to top is know
+        # as bubbling up the item
+        while inserted_index > 0 and not self._is_valid_child(inserted_index):
+            self._swap(inserted_index, self._parent_index(inserted_index))
+            inserted_index = self._parent_index(inserted_index)
 
     def _bubble_down(self, index: int) -> None:
         """
