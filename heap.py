@@ -114,7 +114,7 @@ class MaxHeap:
             self._swap(inserted_index, self._parent_index(inserted_index))
             inserted_index = self._parent_index(inserted_index)
 
-    def _bubble_down(self, index: int) -> None:
+    def _bubbling_down(self, index: int) -> None:
         """
         Helper method to bubble down the root element to correct position so that 
         the heap is still a valid heap
@@ -152,7 +152,7 @@ class MaxHeap:
         self.heap[0] = self.heap.pop()
         # now bubble down the root element to place it in the correct position of the heap.
         index = 0
-        self._bubble_down(index)
+        self._bubbling_down(index)
         # return the removed element from the method
         return root
 
