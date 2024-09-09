@@ -53,18 +53,32 @@ class MaxHeap:
         """
         return self._parent(index) > self.heap[index]
 
+    def _bubbling_up(self) -> None:
+        """
+        Helper method to bubbling the value up.
+        """
+        inserted_index = len(self.heap) - 1
+        # then continue to swap the items till its bigger than the paren of index reaches to parent index of 0
+        # This method of swaping the biggher value to top is know as bubbling up the item
+        while inserted_index > 0 and not self._is_valid_child(inserted_index):
+            self._sawp(inserted_index, self._parent_index(inserted_index))
+            inserted_index = self._parent_index(inserted_index)
+
     def insert(self, value: int) -> None:
         """
         Method to insert a value into the heap
         """
         # first append the value of the inserted item in the end of the list
         self.heap.append(value)
-        # second take a reference of the last index of the item.
-        inserted_index = len(self.heap) - 1
-        # then continue to swap the items till its bigger than the paren of index reaches to parent index of 0
-        while inserted_index > 0 and not self._is_valid_child(inserted_index):
-            self._sawp(inserted_index, self._parent_index(inserted_index))
-            inserted_index = self._parent_index(inserted_index)
+        # bubbling up the item if the the heap is not a valid heap
+        self._bubbling_up()
+
+    def remove(self) -> int:
+        """
+        This methd will remove the root of the binary tree 
+        Returns:
+            int: the root of the tree which gets removed from the tree
+        """
 
 
 heap = MaxHeap()
