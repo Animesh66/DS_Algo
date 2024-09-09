@@ -156,6 +156,12 @@ class MaxHeap:
         # return the removed element from the method
         return root
 
+    def _is_empty(self) -> bool:
+        """
+        Helper method to return the true if the heap is empty
+        """
+        return len(self.heap) == 0
+
 
 heap = MaxHeap()
 heap.insert(10)
@@ -166,4 +172,5 @@ heap.insert(22)
 heap.insert(15)
 print(heap.remove())
 print(heap.remove())
+print(heap._is_empty())
 print(heap.heap)
