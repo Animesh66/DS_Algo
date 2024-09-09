@@ -1,13 +1,31 @@
 class MaxHeap:
 
     def __init__(self) -> None:
-        heap = []
+        self.heap = []
 
     def _left_child_index(self, index: int) -> int:
         """
         Method to provide the left child index of the given index.
         """
         return (2 * index) + 1
+
+    def _left_child(self, index: int) -> int:
+        """
+        This method will return the left child of the provided index. 
+        """
+        return self.heap[self._left_child_index(index)]
+
+    def _right_child(self, index: int) -> int:
+        """
+        This method will return the right child of the given index
+        """
+        return self.heap[self._right_child_index(index)]
+
+    def _parent(self, index: int) -> int:
+        """
+        This method will return the parent element of the provided index
+        """
+        return self.heap[self._parent_index(index)]
 
     def _right_child_index(self, index: int) -> int:
         """
@@ -29,6 +47,12 @@ class MaxHeap:
         self.heap[first_index] = self.heap[second_index]
         self.heap[second_index] = temp
 
+    def _is_valid_child(self, index: int) -> bool:
+        """
+        This will verify of the child is a valid child or not.
+        """
+        return self._parent(index) > self.heap[index]
+
     def insert(self, value: int) -> None:
         """
         Method to insert a value into the heap
@@ -42,8 +66,12 @@ class MaxHeap:
             self._sawp(inserted_index, self._parent_index(inserted_index))
             inserted_index = self._parent_index(inserted_index)
 
-    def _is_valid_child(self, index: int) -> bool:
-        """
-        This will verify of the child is a valid child or not.
-        """
-        return self._parent_index(index) < self.heap(index)
+
+heap = MaxHeap()
+heap.insert(10)
+heap.insert(7)
+heap.insert(2)
+heap.insert(17)
+heap.insert(22)
+heap.insert(15)
+print(heap.heap)
