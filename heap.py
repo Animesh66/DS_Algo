@@ -55,13 +55,11 @@ class MaxHeap:
         """
         Swap the values of the two given index int the list.
         """
-        temp = self.heap[first_index]
-        self.heap[first_index] = self.heap[second_index]
-        self.heap[second_index] = temp
+        self.heap[first_index], self.heap[second_index] = self.heap[second_index], self.heap[first_index]
 
     def _is_valid_child(self, index: int) -> bool:
         """
-        This will verify of the child is a valid child or not.
+        This method will verify if the child is a valid child or not.
         """
         child = self.heap[index]
         parent = self._parent(index)
@@ -69,7 +67,7 @@ class MaxHeap:
 
     def _is_valid_parent(self, index: int) -> bool:
         """
-        This will verify of the child is a valid child or not.
+        This method will verify if the parent is a valid parent or not.
         """
         parent = self.heap[index]
         # case 1: if the parent does not have left child then its a valid parent
@@ -89,7 +87,7 @@ class MaxHeap:
         This method will return the larger child index among two child
         """
         # case 1: verify that if the index have any left child or not.
-        # If there are not left child then the larger index is parent index
+        # If there are no left child  present(leaf node) then the larger index is parent index
         if not self._has_left_child(index):
             return index
         # case 2: verify if the index have any right child index or not.
@@ -128,9 +126,9 @@ class MaxHeap:
         """
         Method to insert a value into the heap
         """
-        # first append the value of the inserted item in the end of the list
+        # first append the value of the inserted item at the end of the list
         self.heap.append(value)
-        # bubbling up the item if the the heap is not a valid heap
+        # bubbling up the item if the heap is not a valid heap
         self._bubbling_up()
 
     def remove(self) -> int:
