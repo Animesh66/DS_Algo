@@ -5,7 +5,7 @@ class Heapfy:
         """
         Method to heapify an provided list.
         """
-        for index in range(len(input_list)):
+        for index in range(len(input_list) - 1):
             cls.__heapify(input_list, index)
         return input_list
 
@@ -20,19 +20,17 @@ class Heapfy:
         # verify if the left child index value is greater than the larger index value
         # and left child index is a valid index
         left_child_index = index * 2 + 1
-        if (left_child_index < len(input_list)) \
-                and (input_list[left_child_index] > input_list[larger_index]):
+        if (left_child_index < len(input_list)) and (input_list[left_child_index] > input_list[larger_index]):
             larger_index = left_child_index
         # verify if the right child index value is greater than the larger index value
         # and right child index is a valid index
         right_child_index = index * 2 + 2
-        if (right_child_index < len(input_list)) and \
-                (input_list[right_child_index] > input_list[larger_index]):
+        if (right_child_index < len(input_list)) and (input_list[right_child_index] > input_list[larger_index]):
             larger_index = right_child_index
         # if the item in the index is greater than both of the left and right child
         # then the item is in correct position so return.
         # This is the base condition of the recursion.
-        if index == larger_index:
+        if (index == larger_index):
             return
         # Now swap the value of the list with larger item\
         cls.__swap(index, larger_index, input_list)
@@ -46,5 +44,5 @@ class Heapfy:
         input_list[first], input_list[second] = input_list[second], input_list[first]
 
 
-convert_heap = [2, 5, 15, 34, 7]
+convert_heap = [11, 17, 34, 47]
 print(Heapfy.heapify(convert_heap))
