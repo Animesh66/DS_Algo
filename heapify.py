@@ -5,7 +5,8 @@ class Heapfy:
         """
         Method to heapify an provided list.
         """
-        for index in range(len(input_list) - 1):
+        last_parent_index = len(input_list) // 2 - 1
+        for index in range(last_parent_index, 0, -1):
             cls.__heapify(input_list, index)
         return input_list
 
@@ -44,5 +45,5 @@ class Heapfy:
         input_list[first], input_list[second] = input_list[second], input_list[first]
 
 
-convert_heap = [11, 17, 34, 47]
+convert_heap = [3, 5, 8, 6, 2, 7, 8]
 print(Heapfy.heapify(convert_heap))
