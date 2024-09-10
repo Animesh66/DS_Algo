@@ -1,3 +1,6 @@
+from heap import MaxHeap
+
+
 class Heapfy:
 
     @classmethod
@@ -44,6 +47,24 @@ class Heapfy:
         """
         input_list[first], input_list[second] = input_list[second], input_list[first]
 
+    @classmethod
+    def get_kth_largest_element(cls, input_list: list[int], k: int) -> int:
+        """
+        Method to find the kth larget element from a list of integers.
+        """
+        heap = MaxHeap()
+        # Verify k is a valid number between 1 and the length of the input_list
+        if k < 1 or k > len(input_list):
+            raise IndexError("value of k is not valid.")
+        #  First put all the elements of the list in a heap.
+        for item in input_list:
+            heap.insert(item)
+        # Use a for loop to remove the elemnt from heap till the kth largest becomes the root.
+        for _ in range(1, k):
+            heap.remove()
+        # The root element is now the kth largest element.
+        return heap.max_value()
+
 
 convert_heap = [3, 5, 8, 6, 2, 7]
-print(Heapfy.heapify(convert_heap))
+print(Heapfy.get_kth_largest_element(convert_heap, k=7))
