@@ -49,6 +49,23 @@ class BinarySearchTree(_Node):
                 current = current.right
         return False
 
+    def breath_first_search(self) -> list[int]:
+        """
+        This method will return a list of values in breath first search traversal.
+        """
+        current_node = self.root
+        results: list[int] = []
+        queue: list[_Node] = []
+        queue.append(current_node)
+        while len(queue) > 0:
+            current_node = queue.pop(0)
+            results.append(current_node.value)
+            if current_node.left is not None:
+                queue.append(current_node.left)
+            if current_node.right is not None:
+                queue.append(current_node.right)
+        return results
+
     def dfs_pre_order_travese(self) -> list[int]:
         """
         This will print the list of values from a BST in pre order traverse
@@ -223,4 +240,4 @@ bst.insert(17)
 # bst2.insert(11)
 # bst2.insert(17)
 # bst.insert(2)
-print(bst.dfs_post_order_traverse())
+print(bst.breath_first_search())
