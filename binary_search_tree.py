@@ -49,32 +49,50 @@ class BinarySearchTree(_Node):
                 current = current.right
         return False
 
-    def pre_order_traverse(self, root: _Node):
-        # This is the solution for pre order traverse using recursion
-        # root -> left -> right
-        if root is None:  # This is called base condition
-            return
-        print(root.value)
-        self.pre_order_traverse(root.left)
-        self.pre_order_traverse(root.right)
+    def dfs_pre_order_travese(self) -> list[int]:
+        """
+        This will print the list of values from a BST in pre order traverse
+        """
+        results = []
 
-    def in_order_traverse(self, root: _Node):
-        # This is the solution for in order traverse using recursion
-        # left -> root -> right
-        if root is None:
-            return
-        self.in_order_traverse(root.left)
-        print(root.value)
-        self.in_order_traverse(root.right)
+        def _pre_order_traverse(node: _Node):
+            # This is the solution for pre order traverse using recursion
+            # root -> left -> right
+            if node is None:
+                return
+            results.append(node.value)
+            _pre_order_traverse(node.left)
+            _pre_order_traverse(node.right)
+        _pre_order_traverse(self.root)
+        return results
 
-    def post_order_traverse(self, root: _Node):
-        # This is the solution for post order traversal using recursion
-        # left -> right -> root
-        if root is None:
-            return
-        self.post_order_traverse(root.left)
-        self.post_order_traverse(root.right)
-        print(root.value)
+    def dfs_in_order_traversal(self) -> list[int]:
+        results = []
+
+        def _in_order_traverse(root: _Node):
+            # This is the solution for in order traverse using recursion
+            # left -> root -> right
+            if root is None:
+                return
+            _in_order_traverse(root.left)
+            results.append(root.value)
+            _in_order_traverse(root.right)
+        _in_order_traverse(self.root)
+        return results
+
+    def dfs_post_order_traverse(self) -> list[int]:
+        results = []
+
+        def _post_order_traverse(root: _Node):
+            # This is the solution for post order traversal using recursion
+            # left -> right -> root
+            if root is None:
+                return
+            _post_order_traverse(root.left)
+            _post_order_traverse(root.right)
+            results.append(root.value)
+        _post_order_traverse(self.root)
+        return results
 
     def height(self):
         return self.__height(self.root)
@@ -196,13 +214,13 @@ bst.insert(5)
 bst.insert(8)
 bst.insert(11)
 bst.insert(17)
-bst2 = BinarySearchTree()
-bst2.insert(10)
-bst2.insert(7)
-bst2.insert(13)
-bst2.insert(5)
-bst2.insert(8)
-bst2.insert(11)
-bst2.insert(17)
+# bst2 = BinarySearchTree()
+# bst2.insert(10)
+# bst2.insert(7)
+# bst2.insert(13)
+# bst2.insert(5)
+# bst2.insert(8)
+# bst2.insert(11)
+# bst2.insert(17)
 # bst.insert(2)
-bst.level_order_traversal()
+print(bst.dfs_post_order_traverse())
