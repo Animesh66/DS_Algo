@@ -81,6 +81,19 @@ class Graph:
             pass
         return False
 
+    def remove_vertex(self, selected_vertex: str) -> bool:
+        """
+        This method will remove the given vertex.
+        """
+        # if vertex exists then first loop over the edges present for the vertex and remove them
+        # after that delete the vertex from the dict.
+        if self.__verify_vertices_exists(vertices=[selected_vertex]):
+            for vertex in self.adj_list[selected_vertex]:
+                self.adj_list[vertex].remove(selected_vertex)
+            del self.adj_list[selected_vertex]
+            return True
+        return False
+
 
 graph = Graph()
 graph.add_vertex('A')
@@ -90,6 +103,9 @@ graph.add_vertex('D')
 graph.add_edge('A', 'B')
 graph.add_edge('C', 'A')
 graph.add_edge('C', 'B')
-graph.remove_edge('B', 'C')
-graph.remove_edge('B', 'D')
+graph.add_edge('C', 'D')
+# graph.remove_edge('B', 'D')
+# graph.remove_edge('B', 'C')
+# graph.remove_edge('B', 'D')
+graph.remove_vertex('A')
 graph.print_graph()
