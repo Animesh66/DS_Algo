@@ -45,8 +45,23 @@ class Graph:
             return True
         return False
 
+    def add_edge(self, first_vertex: str, second_vertex: str) -> bool:
+        """
+        This method will connect two vertex with an edge.
+        """
+        # before creating an edge ensure that both of the vertex did exists else return false
+        if first_vertex in self.adj_list.keys() and second_vertex in self.adj_list.keys():
+            self.adj_list[first_vertex].append(second_vertex)
+            self.adj_list[second_vertex].append(first_vertex)
+            return True
+        return False
+
 
 graph = Graph()
 graph.add_vertex('A')
 graph.add_vertex('B')
+graph.add_vertex('C')
+graph.add_edge('A', 'B')
+graph.add_edge('A', 'C')
+graph.add_edge('C', 'B')
 graph.print_graph()
