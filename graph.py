@@ -72,13 +72,14 @@ class Graph:
         """
         # we need to use the try block here in case the given
         # two vertices does not connect with an edges.
-        try:
-            if self.__verify_vertices_exists(vertices=[first_vertex, second_vertex]):
+
+        if self.__verify_vertices_exists(vertices=[first_vertex, second_vertex]):
+            try:
                 self.adj_list[first_vertex].remove(second_vertex)
                 self.adj_list[second_vertex].remove(first_vertex)
-                return True
-        except ValueError:
-            pass
+            except ValueError:
+                pass
+            return True
         return False
 
     def remove_vertex(self, selected_vertex: str) -> bool:
