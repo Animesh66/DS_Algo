@@ -103,7 +103,7 @@ class UndirectGraph(_Node):
         return False
 
 
-graph = Graph()
+graph = UndirectGraph()
 graph.add_vertex('A')
 graph.add_vertex('B')
 graph.add_vertex('C')
