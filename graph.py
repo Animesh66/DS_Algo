@@ -1,4 +1,10 @@
-class Graph:
+class _Node:
+
+    def __init__(self, label: str) -> None:
+        self.label = label
+
+
+class Graph(_Node):
     """
     This is a graph class represented with adjacency list format.
     Graph can be implemented using either adjacency list format 
@@ -60,6 +66,7 @@ class Graph:
         This method will connect two vertex with an edge.
         """
         # before creating an edge ensure that both of the vertex did exists else return false
+        # This is a uni-direct graph not a non-directed graph.
         if self.__verify_vertices_exists(vertices=[first_vertex, second_vertex]):
             self.adj_list[first_vertex].append(second_vertex)
             self.adj_list[second_vertex].append(first_vertex)
