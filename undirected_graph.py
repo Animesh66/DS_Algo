@@ -1,10 +1,10 @@
 class _Node:
-
+    
     def __init__(self, label: str) -> None:
         self.label = label
 
 
-class Graph(_Node):
+class UndirectGraph(_Node):
     """
     This is a graph class represented with adjacency list format.
     Graph can be implemented using either adjacency list format 
