@@ -1,5 +1,5 @@
 class _Node:
-    
+
     def __init__(self, label: str) -> None:
         self.label = label
 
@@ -69,7 +69,6 @@ class DirectGraph(_Node):
         # This is a uni-direct graph not a non-directed graph.
         if self.__verify_vertices_exists(vertices=[first_vertex, second_vertex]):
             self.adj_list[first_vertex].append(second_vertex)
-            # self.adj_list[second_vertex].append(first_vertex)
             return True
         return False
 
@@ -83,7 +82,6 @@ class DirectGraph(_Node):
         if self.__verify_vertices_exists(vertices=[first_vertex, second_vertex]):
             try:
                 self.adj_list[first_vertex].remove(second_vertex)
-                # self.adj_list[second_vertex].remove(first_vertex)
             except ValueError:
                 pass
             return True
@@ -109,11 +107,8 @@ graph.add_vertex('B')
 graph.add_vertex('C')
 graph.add_vertex('D')
 graph.add_edge('A', 'B')
-graph.add_edge('C', 'A')
-graph.add_edge('C', 'B')
-graph.add_edge('C', 'D')
-# graph.remove_edge('B', 'D')
-# graph.remove_edge('B', 'C')
-# graph.remove_edge('B', 'D')
-graph.remove_vertex('A')
+graph.add_edge('A', 'C')
+graph.add_edge('B', 'D')
+graph.remove_edge('B', 'D')
+# graph.remove_vertex('A')
 graph.print_graph()
