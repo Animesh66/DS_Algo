@@ -4,7 +4,7 @@ class _Node:
         self.label = label
 
 
-class UndirectGraph(_Node):
+class WeightedGraph(_Node):
     """
     This is a graph class represented with adjacency list format.
     Graph can be implemented using either adjacency list format 
