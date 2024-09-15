@@ -1,15 +1,20 @@
-class _Node:
-    
-    def __init__(self, label: str) -> None:
-        self.label = label
-
-
-class WeightedGraph(_Node):
+class WeightedGraph:
     """
     This is a graph class represented with adjacency list format.
     Graph can be implemented using either adjacency list format 
     or using adjacency matrix format.
     """
+    class _Node:
+
+        def __init__(self, label: str) -> None:
+            self.label = label
+
+    class _Edge:
+
+        def __init__(self, from_node, to_node, weight: int) -> None:
+            self.from_node = from_node
+            self.to_node = to_node
+            self.weigh = weight
 
     def __init__(self) -> None:
         """
