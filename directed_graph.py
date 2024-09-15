@@ -115,14 +115,42 @@ class DirectGraph(_Node):
 
     def __dfs_traversal_directed_graph(self, vertex: str, visited_vertices: set) -> None:
         """
-        This private method will provide the depth-first traversal path of a directed graph.
+        This private method will provide the depth first travesal path of a directed graph.
         """
-        # First print the provided vertex and then add this to the set.
+        # first print the provided vertex and then add this to the set.
         print(vertex)
         visited_vertices.add(vertex)
         for v in self.adj_list.get(vertex):
             if v not in visited_vertices:
                 self.__dfs_traversal_directed_graph(v, visited_vertices)
+
+    def dfs_traverse_non_recursive(self, vertex: str) -> None:
+        """
+        This method will print the vertx in depth first travesal.
+        """
+        # first verify that vertex is a valid vertex.
+        if not self.__verify_vertices_exists([vertex]):
+            return
+        # create an empty set to track the list of vistex vertex.
+        # create an empty list and push the vertex in the list
+        visited_vertex = set()
+        stack = []
+        stack.append(vertex)
+        #  while the list is not empty
+        while len(stack) > 0:
+            #  set the current element to the top of the stack
+            current = stack.pop()
+            # verify if the currect vertex is in visited vertex set the start the
+            # loop again
+            if current in visited_vertex:
+                continue
+            # if the vertex is not visited then print the vertex and add it to the set of visited vertex.
+            print(current)
+            visited_vertex.add(current)
+            # visit the neighbour vertices using a for loop
+            for neighbour in self.adj_list.get(current):
+                if neighbour not in visited_vertex:
+                    stack.append(neighbour)
 
 
 graph = DirectGraph()
@@ -137,4 +165,5 @@ graph.add_edge('A', 'C')
 # graph.remove_edge('A', 'B')
 # graph.remove_vertex('A')
 # graph.print_graph()
-graph.dfs_traversal_directed_graph('B')
+# graph.dfs_traversal_directed_graph('G')
+graph.dfs_traverse_non_recursive('A')
