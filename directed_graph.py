@@ -144,10 +144,10 @@ class DirectGraph(_Node):
             # loop again
             if current in visited_vertex:
                 continue
-            # if the vertex is not visited then print the vertex and add it to the set of visited vertex.
+            # if the vertex is not visited then print(visit) the vertex and add it to the set of visited vertex.
             print(current)
             visited_vertex.add(current)
-            # visit the neighbour vertices using a for loop
+            # visit the unvisited neighbour vertices using a for loop
             for neighbour in self.adj_list.get(current):
                 if neighbour not in visited_vertex:
                     stack.append(neighbour)
@@ -166,4 +166,4 @@ graph.add_edge('A', 'C')
 # graph.remove_vertex('A')
 # graph.print_graph()
 # graph.dfs_traversal_directed_graph('G')
-graph.dfs_traverse_non_recursive('A')
+graph.dfs_traverse_non_recursive('C')
