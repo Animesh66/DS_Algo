@@ -154,13 +154,13 @@ class DirectGraph(_Node):
 
     def bfs_traverse_directed_graph(self, vertex: str) -> None:
         """
-        breadth-first traversal of a directed graph
-        This method will traverse the graph from any given node to its neighbour.
+        breadth first traversal of a directed graph
+        This method will traverse the graph from any given node to its neightbour.
         """
-        # First verify if the node exists or not.
+        # first verify if the node exists or not.
         if not self.__verify_vertices_exists([vertex]):
             return
-        # if the vertex is valid then create a set of visited vertex and a queue to track the list of all neighbours.
+        # if the vertex is a valid vertex then create a set of visited vertex and a queue to track the list of all neighbours.
         visited_vertex = set()
         queue = []
         #  first put the vertex in the queue.
@@ -180,19 +180,51 @@ class DirectGraph(_Node):
                 if neighbour not in visited_vertex:
                     queue.append(neighbour)
 
+    def topological_sort(self) -> list[str]:
+        """
+        This method will topologically sort all the vertex
+        """
+        # we need a set of all visited vertex and a stack to stack each items.
+        visited_vertex = set()
+        stack = list()
+        # Now we need to visit all the nodes and perfrom a depth first traversal of each nodes.
+        for vertex in self.adj_list.keys():
+            self.__topological_sort(vertex, visited_vertex, stack)
+        # Now the stack is populated in reverse order and we need to put these elements in a list
+        sorted = list()
+        while len(stack) > 0:
+            sorted.append(stack.pop())
+        return sorted
+
+    def __topological_sort(self, vertex: str, visited_vertex, stack) -> None:
+        """
+        This is a recursive helper method to call from the public topological sort method.
+        """
+        # check if the node is visted then return.(base condition)
+        if vertex in visited_vertex:
+            return
+        #  if the node is not visited then add it into the set.
+        visited_vertex.add(vertex)
+        # now visit all the non visted neighbours.
+        for neighbour in self.adj_list.get(vertex):
+            self.__topological_sort(neighbour, visited_vertex, stack)
+
+        stack.append(vertex)
+
 
 graph = DirectGraph()
+graph.add_vertex('X')
 graph.add_vertex('A')
 graph.add_vertex('B')
-graph.add_vertex('C')
-graph.add_vertex('D')
-graph.add_edge('A', 'B')
-graph.add_edge('B', 'D')
-graph.add_edge('D', 'C')
-graph.add_edge('A', 'C')
+graph.add_vertex('P')
+graph.add_edge('X', 'A')
+graph.add_edge('X', 'B')
+graph.add_edge('A', 'P')
+graph.add_edge('B', 'P')
 # graph.remove_edge('A', 'B')
 # graph.remove_vertex('A')
 # graph.print_graph()
 # graph.dfs_traversal_directed_graph('G')
 # graph.dfs_traverse_non_recursive('C')
-graph.bfs_traverse_directed_graph('H')
+# graph.bfs_traverse_directed_graph('H')
+print(graph.topological_sort())
