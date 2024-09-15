@@ -101,6 +101,29 @@ class DirectGraph(_Node):
             return True
         return False
 
+    def dfs_traversal_directed_graph(self, vertex: str) -> None:
+        """
+        This helper method will provide the depth first travesal path of a directed graph.
+        """
+        # check if the vertex provided exists or nots
+        if not self.__verify_vertices_exists([vertex]):
+            return
+        # if vertex exists then call the private recursive method with values.
+        # here vertex is the provided vertex and set is a blank set.
+        self.__dfs_traversal_directed_graph(
+            vertex=vertex, visited_vertices=set())
+
+    def __dfs_traversal_directed_graph(self, vertex: str, visited_vertices: set) -> None:
+        """
+        This private method will provide the depth-first traversal path of a directed graph.
+        """
+        # First print the provided vertex and then add this to the set.
+        print(vertex)
+        visited_vertices.add(vertex)
+        for v in self.adj_list.get(vertex):
+            if v not in visited_vertices:
+                self.__dfs_traversal_directed_graph(v, visited_vertices)
+
 
 graph = DirectGraph()
 graph.add_vertex('A')
@@ -108,9 +131,10 @@ graph.add_vertex('B')
 graph.add_vertex('C')
 graph.add_vertex('D')
 graph.add_edge('A', 'B')
+graph.add_edge('B', 'D')
+graph.add_edge('D', 'C')
 graph.add_edge('A', 'C')
-graph.add_edge('D', 'A')
-graph.add_edge('B', 'C')
 # graph.remove_edge('A', 'B')
-graph.remove_vertex('A')
-graph.print_graph()
+# graph.remove_vertex('A')
+# graph.print_graph()
+graph.dfs_traversal_directed_graph('B')
