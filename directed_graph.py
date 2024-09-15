@@ -152,6 +152,34 @@ class DirectGraph(_Node):
                 if neighbour not in visited_vertex:
                     stack.append(neighbour)
 
+    def bfs_traverse_directed_graph(self, vertex: str) -> None:
+        """
+        breadth-first traversal of a directed graph
+        This method will traverse the graph from any given node to its neighbour.
+        """
+        # First verify if the node exists or not.
+        if not self.__verify_vertices_exists([vertex]):
+            return
+        # if the vertex is valid then create a set of visited vertex and a queue to track the list of all neighbours.
+        visited_vertex = set()
+        queue = []
+        #  first put the vertex in the queue.
+        queue.append(vertex)
+        # Run the iterative loop while the queue is not empty.
+        while len(queue) > 0:
+            # first put deque the first element fro th queue.
+            current = queue.pop(0)
+            # verify if that queue is not in the visited vertex. If present the start the loop again.
+            if current in visited_vertex:
+                continue
+            # if the vertex is not visted the visit the vetex and put the vertex in the visted vertex set.
+            print(current)
+            visited_vertex.add(current)
+            # after that visit all the non visited neighbours.
+            for neighbour in self.adj_list.get(current):
+                if neighbour not in visited_vertex:
+                    queue.append(neighbour)
+
 
 graph = DirectGraph()
 graph.add_vertex('A')
@@ -166,4 +194,5 @@ graph.add_edge('A', 'C')
 # graph.remove_vertex('A')
 # graph.print_graph()
 # graph.dfs_traversal_directed_graph('G')
-graph.dfs_traverse_non_recursive('C')
+# graph.dfs_traverse_non_recursive('C')
+graph.bfs_traverse_directed_graph('H')
