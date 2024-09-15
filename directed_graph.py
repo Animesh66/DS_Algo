@@ -211,20 +211,69 @@ class DirectGraph(_Node):
 
         stack.append(vertex)
 
+    def has_cycle(self) -> bool:
+        """
+        This method will return true if the directed graph has cycle otherwise return false.
+        """
+        #  Create 3 sets to keep track of all, visitig and visted nodes.
+        all = set()
+        visiting = set()
+        visited = set()
+        #  add all the nodes in the all set.
+        for vertex in self.adj_list.keys():
+            all.add(vertex)
+        # Now pick a node from all of the nodes and perform a depth first search to all its neighbour
+        while (len(all) > 0):
+            # current value is the first element in the set.
+            current = list(all)[0]
+            if self.__has_cycle(current, all, visiting, visited):
+                return True
+
+        return False
+
+    def __has_cycle(self, vertex: str,
+                    all: set[str],
+                    visiting: set[str],
+                    visited: set[str]) -> bool:
+        """
+        This private method will be called from the has cycle method in a recursive way.
+        """
+        # First pick the current node from all and put it in the visitng set.
+        all.remove(vertex)
+        visiting.add(vertex)
+        # Now we need to visit all the neighbours of this node.
+        for neighbour in self.adj_list.get(vertex):
+            # if the neighbour is in the visited set then continue checking next neighbour
+            if neighbour in visited:
+                continue
+            #  if the neighbour is in the visiting set then it means we have a cycle
+            if neighbour in visiting:
+                return True
+            #  Otherwise visit all neighbour recurively.
+            result = self.__has_cycle(neighbour, all, visiting, visited)
+            # if the reesult is true then no need to visit other neighbours.
+            if result:
+                return True
+        # if we visited all the neighbours and does not return that means we do not ahve a cycle and we need to move the nodes from visiting set to visted set.
+        visiting.remove(vertex)
+        visited.add(vertex)
+        return False
+
 
 graph = DirectGraph()
-graph.add_vertex('X')
 graph.add_vertex('A')
 graph.add_vertex('B')
-graph.add_vertex('P')
-graph.add_edge('X', 'A')
-graph.add_edge('X', 'B')
-graph.add_edge('A', 'P')
-graph.add_edge('B', 'P')
+graph.add_vertex('C')
+# graph.add_vertex('P')
+graph.add_edge('A', 'B')
+graph.add_edge('B', 'C')
+graph.add_edge('C', 'A')
+# graph.add_edge('B', 'P')
 # graph.remove_edge('A', 'B')
 # graph.remove_vertex('A')
 # graph.print_graph()
 # graph.dfs_traversal_directed_graph('G')
 # graph.dfs_traverse_non_recursive('C')
 # graph.bfs_traverse_directed_graph('H')
-print(graph.topological_sort())
+# print(graph.topological_sort())
+print(graph.has_cycle())
