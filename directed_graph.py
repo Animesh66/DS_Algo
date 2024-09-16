@@ -115,8 +115,12 @@ class WeightedGraph:
     def has_cycle(self) -> bool:
         """
         This method will return true if the this undirected graph has cycle.
+        Mehod will return true if the graph has cycle otherwise return false.
         """
+        #  Create a set of all visisted vertex
         visited_vertex = set()
+        # iteratively visit all vertex and do a breath first search for all the vertex
+        # and find if the vertex is in visted set or not
         for vertex in self.adj_list.keys():
             if vertex not in visited_vertex and self.__has_cycle(vertex, None, visited_vertex):
                 return True
