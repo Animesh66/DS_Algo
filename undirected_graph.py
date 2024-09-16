@@ -27,9 +27,10 @@ class WeightedGraph:
         This helper method will print a graph like below 
         where keys in the dict are vertex and values in the list are 
         edges connected with vertex.
-                            A
-                           /  \
-                          B -- C
+                             A
+                          1 /  \ 2
+                           B --  C
+                              2
         The above graph will be printed as below.
         {
             'A' : [{'B': 1}, {'C': 2}],
