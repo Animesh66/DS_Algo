@@ -11,7 +11,7 @@ class WeightedGraph:
 
     class _Edge:
 
-        def __init__(self, from_node, to_node, weight: int) -> None:
+        def __init__(self, from_node: str, to_node: str, weight: int) -> None:
             self.from_node = from_node
             self.to_node = to_node
             self.weigh = weight
@@ -32,9 +32,9 @@ class WeightedGraph:
                           B -- C
         The above graph will be printed as below.
         {
-            'A' : ['B', 'C'],
-            'B' : ['A', 'C'],
-            'C' : ['A', 'B']
+            'A' : [{'B': 1}, {'C': 2}],
+            'B' : [{'A': 1}, {'C': 2}],
+            'C' : [{'A': 2}, {'B': 2}]
         }
         """
         for vertex, edges in self.adj_list.items():
@@ -66,15 +66,15 @@ class WeightedGraph:
                 return False
         return True
 
-    def add_edge(self, first_vertex: str, second_vertex: str) -> bool:
+    def add_edge(self, first_vertex: str, second_vertex: str, weight: int) -> bool:
         """
         This method will connect two vertex with an edge.
         """
         # before creating an edge ensure that both of the vertex did exists else return false
         # This is a uni-direct graph not a non-directed graph.
         if self.__verify_vertices_exists(vertices=[first_vertex, second_vertex]):
-            self.adj_list[first_vertex].append(second_vertex)
-            self.adj_list[second_vertex].append(first_vertex)
+            self.adj_list[first_vertex].append({second_vertex: weight})
+            self.adj_list[second_vertex].append({first_vertex: weight})
             return True
         return False
 
@@ -108,17 +108,16 @@ class WeightedGraph:
         return False
 
 
-graph = UndirectGraph()
+graph = WeightedGraph()
 graph.add_vertex('A')
 graph.add_vertex('B')
 graph.add_vertex('C')
 graph.add_vertex('D')
-graph.add_edge('A', 'B')
-graph.add_edge('C', 'A')
-graph.add_edge('C', 'B')
-graph.add_edge('C', 'D')
+graph.add_edge('A', 'B', 2)
+graph.add_edge('A', 'C', 5)
+graph.add_edge('C', 'D', 7)
 # graph.remove_edge('B', 'D')
 # graph.remove_edge('B', 'C')
 # graph.remove_edge('B', 'D')
-graph.remove_vertex('A')
+# graph.remove_vertex('A')
 graph.print_graph()
