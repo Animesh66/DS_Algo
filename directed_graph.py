@@ -117,12 +117,18 @@ class WeightedGraph:
         This method will return true if the this undirected graph has cycle.
         """
         visited_vertex = set()
+        for vertex in self.adj_list.keys():
+            if vertex not in visited_vertex and self.__has_cycle(vertex, None, visited_vertex):
+                return True
+        return False
 
-    def __has_cycle(self, vertex: str, parent_vertex: str, visited_vertex: set[str]) -> bool:
+    def __has_cycle(self, vertex: str, parent_vertex: str | None, visited_vertex: set[str]) -> bool:
         """
         Private recursive method for doing a breadth first seach algorithm.
         """
+        #  First put the current vertex to the visisted set.
         visited_vertex.add(vertex)
+        # Visit all the vertex iteratively and skip the parent vertex and recursively visit all the vertex.
 
 
 graph = WeightedGraph()
