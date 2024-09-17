@@ -17,6 +17,22 @@ def bubble_sort(input_list: list[int]):
     return input_list
 
 
+def selection_sort(input_list: list[int]):
+    """
+    This function will sort the list using selection sort algorithm.
+    We assume the first index is the minimum value and compare the elements with 
+    other and swap the elements if needed.
+    The time complexity for this algorithm is O(n^2)
+    """
+    for i in range(len(input_list)):
+        min_index = i
+        for j in range(i, len(input_list)):
+            if input_list[j] < input_list[min_index]:
+                min_index = j
+        input_list[i], input_list[min_index] = input_list[min_index], input_list[i]
+    return input_list
+
+
 input_list = [13, 10, 8, 22, 59, 55]
 
-print(bubble_sort(input_list))
+print(selection_sort(input_list))
