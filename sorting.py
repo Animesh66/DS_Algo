@@ -48,13 +48,14 @@ def insertion_sort(input_list: list[str]) -> list[str]:
         current = input_list[i]
         # in the inner loop we will compare the value of the previous element with current element.
         j = i - 1
-        while (j >= 0 and input_list[j] > current):
+        while (j >= 0 and current < input_list[j]):
             input_list[j + 1] = input_list[j]
+            input_list[j] = current
             j -= 1
-        input_list[j + 1] = current
+
     return input_list
 
 
 input_list = [13, 10, 8, 22, 59, 55]
 
-print(selection_sort(input_list))
+print(insertion_sort(input_list))
