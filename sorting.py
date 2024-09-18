@@ -39,7 +39,7 @@ def insertion_sort(input_list: list[str]) -> list[str]:
     This function will sort the list using insertion sort algorithm.
     We loop though all the element and sort them in place instead of swaping the elements we shift elemets to wright.
     other and swap the elements if needed.
-    The time complexity for this algorithm is O(n) in best case(list already sorted) and O(n^2) in worst case(srted in reverse).
+    The time complexity for this algorithm is O(n) in best case(list already sorted) and O(n^2) in worst case(sorted in reverse).
     """
     # We are starting with second element in the list assuming first element is in corect place.
     # Once we go to the 2nd element we will verify if the element is greater or not.
