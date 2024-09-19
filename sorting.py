@@ -56,6 +56,54 @@ def insertion_sort(input_list: list[str]) -> list[str]:
     return input_list
 
 
+def merge_sort(input_list: list[int]) -> list[int]:
+    """
+    Merge sort use divide and conqure rule and divide the array to small arrays and then recursively
+    sort them and merge the arrays.
+    The time complexity of the merge sort is O(nlogn)[divide is O(logn) and merge is O(n)] 
+    and space complexity is O(n) as we need to allocate extra space for the sub arrays.
+    input_list = [23, 18, 55, 21, 7] 
+    left_sub_list = [23, 18]
+    right_sub_list = [55, 21, 7]
+    """
+    # Base condition for the merge sort recursion is when the list length is one and no more division possible.
+    if len(input_list) == 1:
+        return input_list
+    # first recursively divide the list with two equal lists and
+    # copy the elements over the two different arrays untill list size gets to 1
+    middle_index = len(input_list) // 2
+    left_sub_list = merge_sort(input_list[:middle_index])
+    right_sub_list = merge_sort(input_list[middle_index:])
+    # merge the sorted list so that the resulted list is sorted.
+    return merge(left_sub_list, right_sub_list)
+
+
+def merge(left_sub_list: list[int], right_sub_list: list[int]) -> list[int]:
+    """
+    This list will merge both the left and right sub lists
+    """
+    i = 0
+    j = 0
+    input_list = []
+    # Loop through the two left and right sublist and then compare the values of each list
+    while (i < len(left_sub_list) and j < len(right_sub_list)):
+        if left_sub_list[i] <= right_sub_list[j]:
+            input_list.append(left_sub_list[i])
+            i += 1
+        else:
+            input_list.append(right_sub_list[j])
+            j += 1
+    # In case left list still have items left then add it into the input list
+    while (i < len(left_sub_list)):
+        input_list.append(left_sub_list[i])
+        i += 1
+    # In case right list still have items left after comparing then add the elements into the input list.
+    while (j < len(right_sub_list)):
+        input_list.append(right_sub_list[j])
+        j += 1
+    return input_list
+
+
 input_list = [13, 10, 8, 22, 59, 55]
 
-print(insertion_sort(input_list))
+print(merge_sort(input_list))
