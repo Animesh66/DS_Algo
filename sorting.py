@@ -60,8 +60,8 @@ def merge_sort(input_list: list[int]) -> list[int]:
     """
     Merge sort use divide and conqure rule and divide the array to small arrays and then recursively
     sort them and merge the arrays.
-    The time complexity of the merge sort is O(nlogn)[divide is O(logn) and merge is O(n)] 
-    and space complexity is O(n) as we need to allocate extra space for the sub arrays.
+    The time complexity of the merge sort is O(nlogn)[divide is O(log n) and merge is O(n)] 
+    and space complexity is O(n) as we have to allocate extra space for the sub arrays.
     input_list = [23, 18, 55, 21, 7] 
     left_sub_list = [23, 18]
     right_sub_list = [55, 21, 7]
@@ -79,7 +79,7 @@ def merge_sort(input_list: list[int]) -> list[int]:
 
 def merge(left_sub_list: list[int], right_sub_list: list[int]) -> list[int]:
     """
-    This list will merge both the left and right sub lists
+    This list will merge both the left and right sub lists in sorted order
     """
     i = 0
     j = 0
