@@ -108,6 +108,57 @@ def merge(left_sub_list: list[int], right_sub_list: list[int]) -> list[int]:
     return resulted_list
 
 
+def quick_sort(input_list: list[int]) -> list[int]:
+    """
+    Public function to call from outside.
+    """
+    return _quick_sort(input_list, left_index=0, right_index=len(input_list) - 1)
+
+
+def _quick_sort(input_list: list[int], left_index: int, right_index: int) -> list[int]:
+    """
+    This function will sort the input list using quick sort algorithm. 
+    In quick sort we generally select a pivot element(start, middle or last element in the list) 
+    the move the smaller elements to the left side of pivot and move the greater items 
+    to the right side of the pivot. That means the pivot is in correct postion. We perform this recursively 
+    to all element. 
+    Time complexity for quick sort is best case scenario O(nlog n) and worst case scrnario O(n^2)
+    space complexity of quick sort is O(log n) this is required as we need for recursive calls to call stack.
+    """
+    # We need to define the base condition of recursion.
+    # For recursion base condition if the value of left_index is greater than right_index
+    # then the recursion should terminate.
+    if left_index < right_index:
+        # first get the pivot index of the list
+        pivot_index = pivot(
+            input_list, pivot_index=left_index, end_index=right_index)
+        # recursively call the quick_sort method to sort the left half of the pivot
+        _quick_sort(input_list, left_index, pivot_index - 1)
+        # recursively call the quick_sort method to sort the right half of the pivot
+        _quick_sort(input_list, pivot_index + 1, right_index)
+    return input_list
+
+
+def pivot(input_list: list[int], pivot_index: int, end_index: int) -> int:
+    """
+    Helper method which will take the input list and returns the index of the pivot for this list.
+    We will call this helper method from inside the quick sort method.
+    """
+    # first set the value of swap index to pivot index to keep track of the index to be swapped.
+    swap_index = pivot_index
+    # loop over the list of element and verify if the elements are less than the pivot element or not.
+    # initially pivot index will be 0 and end_index will be len(input_list)
+    for i in range(pivot_index + 1, end_index + 1):
+        if input_list[i] < input_list[pivot_index]:
+            # if the value of pivot is less than the value of i then swap the elements and
+            # increase the swap index value by one
+            swap_index += 1
+            input_list[swap_index], input_list[i] = input_list[i], input_list[swap_index]
+    # Once the swaping of left elements are done at the last swap the value of pivot_index with swap index
+    input_list[swap_index], input_list[pivot_index] = input_list[pivot_index], input_list[swap_index]
+    return swap_index
+
+
 input_list = [13, 10, 8, 22, 59, 55]
 
-print(merge_sort(input_list))
+print(quick_sort(input_list))
