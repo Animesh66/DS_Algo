@@ -57,6 +57,25 @@ def binary_search_iterative(input_list: list[int], search_item: int) -> int:
     Space complexity for this algorithm is O(log n) in case we implement using
     recusion and O(1) if we are using iteration.
     """
+    # Set the value of inital value left index and right index.
+    left_index = 0
+    right_index = len(input_list) - 1
+    # Iterate through the list until left index becomes less than right index(loop though all items).
+    while (left_index <= right_index):
+        # Calculate the middle index from left and right index.
+        middle_index = (right_index + left_index) // 2
+        # Check if the middle item is the search item or not.
+        if search_item == input_list[middle_index]:
+            return middle_index
+        # Check if the search item is less than the middle item then search left half of the list.
+        elif search_item < input_list[middle_index]:
+            right_index = middle_index - 1
+        # Check if the search item is greater than the middle item then seach right half of the list.
+        else:
+            left_index = middle_index + 1
+    #  If the search element is not present in the list return -1
+    return -1
+
 
 input_list = [8, 10, 13, 22, 55, 63]
-print(binary_search(input_list, 58))
+print(binary_search_iterative(input_list, 58))
