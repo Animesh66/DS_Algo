@@ -53,7 +53,7 @@ def binary_search_iterative(input_list: list[int], search_item: int) -> int:
     Binary search only works for sorted lists.
     This method takes a list and the required item to search and return the index of the search item.
     In case the element does not exist then it returns -1
-    The time complexity of linear search is O(log n)
+    The time complexity of linear search is O(log n)(base 2)
     Space complexity for this algorithm is O(log n) in case we implement using
     recusion and O(1) if we are using iteration.
     """
@@ -75,6 +75,33 @@ def binary_search_iterative(input_list: list[int], search_item: int) -> int:
             left_index = middle_index + 1
     #  If the search element is not present in the list return -1
     return -1
+def ternary_search(input_list: list[int], search_item: int) -> int:
+    """
+    Public method to kick of the recursion for the ternary seach private method.
+    """
+    return _ternary_search(input_list=input_list, 
+                           search_item=search_item,
+                           left_index=0,
+                           right_index=len(input_list) - 1)
+
+
+def _ternary_search(input_list: list[int], 
+                    search_item: int,
+                    left_index: int,
+                    right_index: int) -> int:
+    """
+    This function is search an element from a list using ternary search algorithm.
+    In Ternary search we divide the list into 3 partitins and calculate the middle point of each 
+    partition. So we will have two middle points.
+    Time complexity of ternary search is O(log n)(base 3)
+    Space complexity of ternary seach is O(log n) in recustion and O(1) using iteratively.
+    This function is implemented using recursion.
+    Binary search is faster than ternary search.
+    """
+    partition_size = (right_index - left_index) // 3
+    first_mid = left_index + partition_size
+    second_mid = right_index - partition_size
+
 
 
 input_list = [8, 10, 13, 22, 55, 63]
