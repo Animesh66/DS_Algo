@@ -1,3 +1,5 @@
+import math
+
 def liner_search(input_list: list[int], item: int) -> int:
     """
     This function illustrates the liner search algorithm.
@@ -121,7 +123,31 @@ def _ternary_search(input_list: list[int],
     # If none of the above condition are true then the search item is in middle partition.
     return _ternary_search(input_list, search_item, first_mid + 1, second_mid - 1)
 
+def jump_search(input_list: list[int], search_item: int) -> int:
+    """
+    This function will take an input list and returns the index of the search item form the list.
+    Tis algorithm use jum search where we divide the sorted list into different blocks and we search
+    for the elements on that block only.
+    Time complexity of this jump search is O(sqrt(n))
+    We divide the list with sqrt(n) number of blocks.
+    """
+    # First calculate the block size
+    block_size = int(math.sqrt(len(input_list)))
+    # Take two pointers and poitn to the start index of two consecutive blocks.
+    start = 0
+    next = block_size
+    # Loop though the items and identify the block in which the item may exists.
+    while (input_list[next - 1] < search_item and start < len(input_list)):
+        start = next
+        next += block_size
+        if next > len(input_list):
+            next = len(input_list)
+    # Now when we find the potential block then perform a liner search on that block to find the item.
+    for i in range(start, next):
+        if input_list[i] == search_item:
+            return i
+    return -1 
 
 
 input_list = [8, 10, 13, 22, 55, 63]
-print(ternary_search(input_list, 55))
+print(jump_search(input_list, 55))
