@@ -126,7 +126,7 @@ def _ternary_search(input_list: list[int],
 def jump_search(input_list: list[int], search_item: int) -> int:
     """
     This function will take an input list and returns the index of the search item form the list.
-    Tis algorithm use jum search where we divide the sorted list into different blocks and we search
+    This algorithm use jump search where we divide the sorted list into different blocks and we search
     for the elements on that block only.
     Time complexity of this jump search is O(sqrt(n))
     We divide the list with sqrt(n) number of blocks.
@@ -148,6 +148,22 @@ def jump_search(input_list: list[int], search_item: int) -> int:
             return i
     return -1 
 
+def exponential_search(input_list: list[int], search_item: int) -> int:
+    """
+    This function will take an input list and returns the index of the search item form the list.
+    This algorithm uses exponential search where we divide the sorted list into different blocks
+    first we define the block size to index 1 means the first two items and we double the block size 
+    in every search. 
+    """
+    # Set the initial size of the block
+    block_size = 1
+    # Loop over the items until the block is not found
+    while (block_size < len(input_list) and input_list[block_size] < search_item):
+        block_size *= 2
+    #  Now perform a binary search on that block
+    left_index = block_size // 2
+    right_index = min(block_size, len(input_list) - 1)
+    return _binary_search_recursive(input_list, search_item, left_index, right_index)
 
 input_list = [8, 10, 13, 22, 55, 63]
-print(jump_search(input_list, 55))
+print(exponential_search(input_list, 58))
