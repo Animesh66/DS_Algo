@@ -98,11 +98,30 @@ def _ternary_search(input_list: list[int],
     This function is implemented using recursion.
     Binary search is faster than ternary search.
     """
+    # Implement the base condition for recursion. If the left index is greater than right index.
+    # thta means the searched item does not exists in the input list.
+    if left_index > right_index:
+        return -1
+    #  Calculate the partition size and index of thow boundaries.
     partition_size = (right_index - left_index) // 3
     first_mid = left_index + partition_size
     second_mid = right_index - partition_size
+    #  Check if the first mid is equals to the search item or not.
+    if input_list[first_mid] == search_item:
+        return first_mid
+    #  Check if the second mid is equals to the search item or not.
+    if input_list[second_mid] == search_item:
+        return second_mid
+    #  Check if the search item is less than the first mid value then search left.
+    if search_item < input_list[first_mid]:
+        return _ternary_search(input_list, search_item, left_index, first_mid - 1)
+    #  Check if the search item is greater than the second mid value then search right.
+    if search_item > input_list[second_mid]:
+        return _ternary_search(input_list, search_item, second_mid + 1, right_index)
+    # If none of the above condition are true then the search item is in middle partition.
+    return _ternary_search(input_list, search_item, first_mid + 1, second_mid - 1)
 
 
 
 input_list = [8, 10, 13, 22, 55, 63]
-print(binary_search_iterative(input_list, 58))
+print(ternary_search(input_list, 55))
