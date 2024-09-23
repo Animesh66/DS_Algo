@@ -72,8 +72,9 @@ def find_most_repeated_char(input_str: str) -> tuple[str, int]:
     """
     This method will take input as string and returns the most frequent charactor count from that given string.
     """
+    updated_input_str = input_str.lower().replace(" ", "")
     char_frequency = {}
-    for char in input_str.lower():
+    for char in updated_input_str:
         if char not in char_frequency.keys():
             char_frequency[char] = 1
         else:
@@ -83,4 +84,4 @@ def find_most_repeated_char(input_str: str) -> tuple[str, int]:
     return char_frequency_sorted[0]
 
 
-print(find_most_repeated_char("My Name is Animesh Mukherjees"))
+print(find_most_repeated_char("My Name is Animesh Mukherjees      "))
