@@ -96,4 +96,17 @@ def capitalize(input_str: str) -> str:
     return " ".join(output_words)
 
 
-print(capitalize("MY           NAME      IS       ANIMESH   "))
+def is_anagram(first_str: str, second_str: str) -> bool:
+    """
+    This method will verify if the two given strings are anagram of each other or not.
+    Anagram means each charactor of a string should be present on te second string.
+    """
+    if len(first_str) != len(second_str):
+        return False
+    for char in first_str:
+        if char.lower() not in second_str.lower():
+            return False
+    return True
+
+
+print(is_anagram("ABCD", "cdab"))
