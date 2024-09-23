@@ -25,9 +25,11 @@ def word_reverse(input_sentence: str) -> str:
     """
     This method will take input an sentence and outputs the reverse of the sentence.
     """
-    words = input_sentence.split(" ")
-    reverse_words = " ".join(words[::-1])
-    return reverse_words
+    if input_sentence:
+        words = input_sentence.split(" ")
+        reverse_words = " ".join(words[::-1])
+        return reverse_words
+    return None
 
 
 print(word_reverse("My name is Animesh"))
