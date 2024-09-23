@@ -47,4 +47,11 @@ def rotation_string(first_string: str, second_string: str) -> bool:
     return False
 
 
-print(rotation_string("AB", "BAAB"))
+def remove_duplicates(input_string: str) -> str:
+    """
+    This method will remove all duplicate char from a string and re
+    """
+    return "".join(set(input_string.lower()))
+
+
+print(remove_duplicates("My Name is Animesh Mukherjees"))
