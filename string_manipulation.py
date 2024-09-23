@@ -91,8 +91,9 @@ def capitalize(input_str: str) -> str:
     words = input_str.strip().split(" ")
     output_words = []
     for word in words:
-        output_words.append(word.title())
+        if word != "":
+            output_words.append((word.title()))
     return " ".join(output_words)
 
 
-print(capitalize("my name is animesh mukherjees"))
+print(capitalize("MY           NAME      IS       ANIMESH   "))
