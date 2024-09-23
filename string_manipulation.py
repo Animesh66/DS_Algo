@@ -33,4 +33,18 @@ def word_reverse(input_sentence: str) -> str:
     return None
 
 
-print(word_reverse("My name is Animesh"))
+def rotation_string(first_string: str, second_string: str) -> bool:
+    """
+    This method will find if one string is the rotation of other string or not.
+    e.g. "ABCD" is rotation of "DABC", "CDAB"
+    """
+    #  First check if both string have same length or not.
+    if len(first_string) != len(second_string):
+        return False
+    #  Check if both the secpmd string is present on first string or not.
+    if second_string in (first_string + first_string):
+        return True
+    return False
+
+
+print(rotation_string("AB", "BAAB"))
