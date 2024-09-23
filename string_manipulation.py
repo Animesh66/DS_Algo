@@ -68,4 +68,19 @@ def remove_duplicates_iterative(input_string: str) -> str:
     return "".join(output_str)
 
 
-print(remove_duplicates_iterative("My Name is Animesh Mukherjees"))
+def find_most_repeated_char(input_str: str) -> tuple[str, int]:
+    """
+    This method will take input as string and returns the most frequent charactor count from that given string.
+    """
+    char_frequency = {}
+    for char in input_str.lower():
+        if char not in char_frequency.keys():
+            char_frequency[char] = 1
+        else:
+            char_frequency[char] += 1
+    char_frequency_sorted = sorted(
+        list(char_frequency.items()), key=lambda char: char[1], reverse=True)
+    return char_frequency_sorted[0]
+
+
+print(find_most_repeated_char("My Name is Animesh Mukherjees"))
