@@ -54,4 +54,18 @@ def remove_duplicates(input_string: str) -> str:
     return "".join(set(input_string.lower()))
 
 
-print(remove_duplicates("My Name is Animesh Mukherjees"))
+def remove_duplicates_iterative(input_string: str) -> str:
+    """
+    This method will remove all duplicate char from a string and re
+    """
+    char_set = set()
+    output_str = []
+    for char in input_string:
+        if char.lower() not in char_set:
+            char_set.add(char)
+            output_str.append(char)
+
+    return "".join(output_str)
+
+
+print(remove_duplicates_iterative("My Name is Animesh Mukherjees"))
