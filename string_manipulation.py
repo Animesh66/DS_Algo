@@ -84,4 +84,15 @@ def find_most_repeated_char(input_str: str) -> tuple[str, int]:
     return char_frequency_sorted[0]
 
 
-print(find_most_repeated_char("My Name is Animesh Mukherjees      "))
+def capitalize(input_str: str) -> str:
+    """
+    This method will capitalize each word of the given sentence. 
+    """
+    words = input_str.strip().split(" ")
+    output_words = []
+    for word in words:
+        output_words.append(word.title())
+    return " ".join(output_words)
+
+
+print(capitalize("my name is animesh mukherjees"))
