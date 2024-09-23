@@ -26,7 +26,8 @@ def word_reverse(input_sentence: str) -> str:
     This method will take input an sentence and outputs the reverse of the sentence.
     """
     if input_sentence:
-        words = input_sentence.split(" ")
+        # First trim the sentence to remove any leading or lagging space then split the sentence.
+        words = input_sentence.strip().split(" ")
         reverse_words = " ".join(words[::-1])
         return reverse_words
     return None
