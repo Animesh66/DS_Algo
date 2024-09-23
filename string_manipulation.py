@@ -109,4 +109,15 @@ def is_anagram(first_str: str, second_str: str) -> bool:
     return True
 
 
-print(is_anagram("ABCD", "cdab"))
+def check_palindrome(char: str | int) -> bool:
+    """
+    Check if the provided char is a palindrome or not.
+    """
+    if not char:
+        return False
+    if type(char) == int:
+        char = str(char)
+    return char == char[::-1]
+
+
+print(check_palindrome(121))
