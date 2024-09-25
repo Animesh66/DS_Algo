@@ -1,4 +1,4 @@
-functional_call_count = 0
+function_call_count = 0
 
 
 def fibonacci_recursion(number: int) -> int:
@@ -7,9 +7,9 @@ def fibonacci_recursion(number: int) -> int:
     dynamic programming. This is not using memoization technique of dynamic programming.
     This will make too many recusive calls whihc is inefficient.
     """
-    global functional_call_count
+    global function_call_count
     # This counter value will provide the number of times the recusive function
-    functional_call_count += 1
+    function_call_count += 1
     # is called when the function is called recursively.
     if number == 0 or number == 1:
         return number
@@ -17,4 +17,4 @@ def fibonacci_recursion(number: int) -> int:
 
 
 print(fibonacci_recursion(20))
-print(functional_call_count)
+print(function_call_count)
