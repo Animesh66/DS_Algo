@@ -10,13 +10,24 @@ from 1 to 6 the second parameter will be 6.
 Example
 missing_number([1, 2, 3, 4, 6], 6) # 5
 """
+
+
 def missing_number(arr, n):
-    pass
+    # Calculate the sum of first n natural numbers
+    total = n * (n + 1) // 2
+    # Calculate the sum of numbers in the array
+    sum_arr = sum(arr)
+    # Find the missing number by subtracting sum_arr from total
+    missing = total - sum_arr
+
+    return missing
 
 
 """
 Find first repeated and non repeated character of a given string.
 """
+
+
 def find_first_non_repeated_char(input_str: str) -> str:
     char_dict = {}
     for char in input_str.replace(" ", ""):
