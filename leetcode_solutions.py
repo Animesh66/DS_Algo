@@ -12,15 +12,15 @@ missing_number([1, 2, 3, 4, 6], 6) # 5
 """
 
 
-def missing_number(arr, n):
+def missing_number(input_list: list[int], n: int):
     # Calculate the sum of first n natural numbers
     total = n * (n + 1) // 2
     # Calculate the sum of numbers in the array
-    sum_arr = sum(arr)
+    sum_of_input_list = sum(input_list)
     # Find the missing number by subtracting sum_arr from total
-    missing = total - sum_arr
+    missing_number = total - sum_of_input_list
 
-    return missing
+    return missing_number
 
 
 """
