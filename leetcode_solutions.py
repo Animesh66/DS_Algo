@@ -74,5 +74,24 @@ def rotate_list_kth_element_from_last(input_list: list[int], k: int) -> list[int
     return input_list
 
 
-input_list = [1, 2, 3, 4, 5, 6, 7]
-print(rotate_list_kth_element_from_last(input_list, 7))
+"""
+Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
+There is only one repeated number in nums, return this repeated number.
+You must solve the problem without modifying the array nums and using only constant extra space.
+Example 1:
+Input: nums = [1,3,4,2,2]
+Output: 2
+"""
+
+
+def find_duplicate(input_list: list[int]) -> int:
+    n = len(input_list)  # Calculate the lenth of the list
+    total_sum = (n - 1) * n // 2
+    # Get the total number of sum using the formula using n * (n + 1)) // 2
+    input_list_sum = sum(input_list)
+    duplicate_value = input_list_sum - total_sum
+    return duplicate_value
+
+
+input_list = [1, 3, 4, 2, 2]
+print(find_duplicate(input_list))
