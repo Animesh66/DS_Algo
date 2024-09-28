@@ -144,7 +144,8 @@ def find_maximum_product(input_list: list[int]) -> int:
     # Return the product of the two largest numbers
     return max1 * max2  # O(1), constant time multiplication
  
-arr = [1, 7, 3, 4, 9, 5]
+input_list1 = [1, 7, 3, 4, 9, 5]
+print(find_maximum_product(input_list1))
 
 """
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
