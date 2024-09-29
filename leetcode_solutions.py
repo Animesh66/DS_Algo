@@ -468,4 +468,53 @@ print(output_tuple)  # Expected output: (4, 5)
 def common_elements(tuple1, tuple2):
     return tuple(item for item in tuple1 if item in tuple2)
 
-print(common_elements((1, 2, 3, 4, 5),(4, 5, 6, 7, 8)))
+# print(common_elements((1, 2, 3, 4, 5),(4, 5, 6, 7, 8)))
+
+"""
+You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+"""
+
+
+"""
+You are given the heads of two sorted linked lists list1 and list2. 
+Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.
+Return the head of the merged linked list.   
+Example 1: 
+Input: list1 = [1,2,4], list2 = [1,3,4]
+Output: [1,1,2,3,4,4]
+Example 2:
+Input: list1 = [], list2 = []
+Output: []
+"""
+
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+class Solution(object):
+    def mergeTwoLists(self, l1, l2):
+        """
+        :type list1: Optional[ListNode]
+        :type list2: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        prehead = ListNode(-1)
+ 
+        prev = prehead
+        while l1 and l2:
+            if l1.val <= l2.val:
+                prev.next = l1
+                l1 = l1.next
+            else:
+                prev.next = l2
+                l2 = l2.next            
+            prev = prev.next
+ 
+        # At least one of l1 and l2 can still have nodes at this point, so connect
+        # the non-null list to the end of the merged list.
+        prev.next = l1 if l1 is not None else l2
+ 
+        return prehead.next
