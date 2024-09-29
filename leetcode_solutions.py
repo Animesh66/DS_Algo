@@ -303,7 +303,7 @@ def merge_dicts(first_dict: dict, second_dict: dict) -> dict:
         merge_dict[key] = merge_dict.get(key, 0) + value
     return merge_dict
 
-print(merge_dicts({'a': 1, 'b': 2, 'c': 3},{'b': 3, 'c': 4, 'd': 5}))
+# print(merge_dicts({'a': 1, 'b': 2, 'c': 3},{'b': 3, 'c': 4, 'd': 5}))
 
 """
 Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
@@ -328,3 +328,15 @@ def reverse(x: int) -> int:
         return 0
 
     return reversed_num
+
+"""
+Define a function which takes a dictionary as a parameter and returns the key with the highest value in a dictionary.
+Example:
+my_dict = {'a': 5, 'b': 9, 'c': 2}
+max_value_key(my_dict))
+Output: b
+"""
+def max_value_key(input_dict: dict) -> str:
+    sorted_list = sorted(input_dict.items(), key=lambda item: item[1], reverse=True)
+    return sorted_list[0][0]
+print(max_value_key({'a': 5, 'b': 9, 'c': 2}))
