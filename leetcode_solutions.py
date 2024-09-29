@@ -286,4 +286,21 @@ def rotate_matrix(input_matrix: list[list[int]]) -> list[list[int]]:
         row.reverse()  # Reverse the elements in the current row
     return input_matrix
 
-print(rotate_matrix([[1,2,3],[4,5,6],[7,8,9]]))
+# print(rotate_matrix([[1,2,3],[4,5,6],[7,8,9]]))
+
+"""
+Define a function with takes two dictionaries as parameters and merge them and sum the values of common keys.
+Example:
+dict1 = {'a': 1, 'b': 2, 'c': 3}
+dict2 = {'b': 3, 'c': 4, 'd': 5}
+merge_dicts(dict1, dict2)
+Output: {'a': 1, 'b': 5, 'c': 7, 'd': 5}
+"""
+
+def merge_dicts(first_dict: dict, second_dict: dict) -> dict:
+    merge_dict = first_dict.copy()
+    for key, value in second_dict.items():
+        merge_dict[key] = merge_dict.get(key, 0) + value
+    return merge_dict
+
+print(merge_dicts({'a': 1, 'b': 2, 'c': 3},{'b': 3, 'c': 4, 'd': 5}))
