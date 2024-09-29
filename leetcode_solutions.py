@@ -236,4 +236,19 @@ def find_pairs(input_list: list[int], number: int) -> list[str]:
             output_list.append(f'{item} + {complement}')
     return output_list
 
-print(find_pairs([2, 4, 3, 5, 6, -2, 4, 7, 8, 9], 7))
+# print(find_pairs([2, 4, 3, 5, 6, -2, 4, 7, 8, 9], 7))
+
+"""
+Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+Example :
+Input: nums = [1,2,3,1]
+Output: true
+"""
+
+def contains_duplicate(input_list: list[int]) -> bool:
+    for index, item in enumerate(input_list):
+        if item in input_list[index + 1:]:
+            return True
+    return False
+
+print(contains_duplicate([1,2,3]))
