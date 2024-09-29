@@ -304,3 +304,27 @@ def merge_dicts(first_dict: dict, second_dict: dict) -> dict:
     return merge_dict
 
 print(merge_dicts({'a': 1, 'b': 2, 'c': 3},{'b': 3, 'c': 4, 'd': 5}))
+
+"""
+Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
+Example 1:
+Input: x = 123
+Output: 321
+"""
+
+def reverse(x: int) -> int:
+    # Define the 32-bit signed integer range limits
+    INT_MIN, INT_MAX = -2**31, 2**31 - 1
+
+    # Determine if the number is negative
+    sign = -1 if x < 0 else 1
+
+    # Reverse the absolute value of the integer and apply the sign
+    reversed_num = int(str(abs(x))[::-1]) * sign
+
+    # If the reversed number is out of the 32-bit signed integer range, return 0
+    if reversed_num < INT_MIN or reversed_num > INT_MAX:
+        return 0
+
+    return reversed_num
