@@ -204,5 +204,36 @@ def first_and_second_without_sort(input_list: list[int]) -> int:
             second = number
     return first, second
 
-input_list = [84,85,86,87,85,90,90,87,85,83,23,45,84,1,2,0]
-print(first_and_second_without_sort(input_list))
+# input_list = [84,85,86,87,85,90,90,87,85,83,23,45,84,1,2,0]
+# print(first_and_second_without_sort(input_list))
+
+"""
+Write a function to remove the duplicate numbers on given integer array/list.
+Example
+remove_duplicates([1, 1, 2, 2, 3, 4, 5])
+Output : [1, 2, 3, 4, 5]
+"""
+def remove_duplicates(input_list: list[int]) -> list[int]:
+    output_list = []
+    for item in input_list:
+        if item not in output_list:
+            output_list.append(item)
+    return output_list
+
+# print(remove_duplicates([1, 1, 2, 2, 3, 4, 5]))
+
+"""
+Write a function to find all pairs of an integer array whose sum is equal to a given number. Do not consider commutative pairs.
+Example
+pair_sum([2, 4, 3, 5, 6, -2, 4, 7, 8, 9],7)
+Output : ['2+5', '4+3', '3+4', '-2+9']
+"""
+def find_pairs(input_list: list[int], number: int) -> list[str]:
+    output_list = []
+    for index, item in enumerate(input_list):
+        complement = number - item
+        if complement in input_list[index + 1:]:
+            output_list.append(f'{item} + {complement}')
+    return output_list
+
+print(find_pairs([2, 4, 3, 5, 6, -2, 4, 7, 8, 9], 7))
