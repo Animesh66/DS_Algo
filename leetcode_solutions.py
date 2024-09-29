@@ -179,5 +179,30 @@ def diagonal_sum(input_list: list[int]) -> int:
     return diagonal_sum
 
 
-input_list = [[1,2,3],[4,5,6],[7,8,9]] 
-print(diagonal_sum(input_list))
+# input_list = [[1,2,3],[4,5,6],[7,8,9]] 
+# print(diagonal_sum(input_list))
+
+"""
+Given a list, write a function to get first, second best scores from the list.
+List may contain duplicates.
+Example
+myList = [84,85,86,87,85,90,85,83,23,45,84,1,2,0]
+first_second(myList) # 90 87
+"""
+def first_second(input_list: list[int]) -> int:
+    non_duplicate = set(input_list)
+    sorted_list = sorted(list(non_duplicate), reverse=True)
+    return sorted_list[:2]
+
+def first_and_second_without_sort(input_list: list[int]) -> int:
+    first, second = 0, 0
+    for number in input_list:
+        if number > first:
+            second = first
+            first = number
+        if number > second and number != first:
+            second = number
+    return first, second
+
+input_list = [84,85,86,87,85,90,90,87,85,83,23,45,84,1,2,0]
+print(first_and_second_without_sort(input_list))
