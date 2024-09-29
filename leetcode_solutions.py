@@ -339,4 +339,51 @@ Output: b
 def max_value_key(input_dict: dict) -> str:
     sorted_list = sorted(input_dict.items(), key=lambda item: item[1], reverse=True)
     return sorted_list[0][0]
-print(max_value_key({'a': 5, 'b': 9, 'c': 2}))
+
+# print(max_value_key({'a': 5, 'b': 9, 'c': 2}))
+
+"""
+Define a function which takes as a parameter dictionary and returns a dictionary in which reverse the key-value pairs are reversed.
+Example:
+my_dict = {'a': 1, 'b': 2, 'c': 3}
+reverse_dict(my_dict)
+Output: {1: 'a', 2: 'b', 3: 'c'}
+"""
+def reverse_dict(my_dict: dict) -> dict:
+    reverse_dict = {}
+    for key, value in my_dict.items():
+        reverse_dict[value] = key
+    return reverse_dict
+
+# print(reverse_dict({'a': 1, 'b': 2, 'c': 3}))
+
+"""
+Define a function that takes a dictionary as a parameter and returns a dictionary with elements based on a condition.
+Example:
+my_dict = {'a': 1, 'b': 2, 'c': 3, 'd': 4} 
+filtered_dict = filter_dict(my_dict, lambda k, v: v % 2 == 0) 
+Output:
+{'b': 2, 'd': 4}
+"""
+
+def filter_dict(my_dict, condition):
+    return {k: v for k, v in my_dict.items() if condition(k, v)}
+
+"""
+Define a function which takes two lists as parameters and check if two given lists have the same frequency of elements.
+Example:
+list1 = [1, 2, 3, 2, 1]
+list2 = [3, 1, 2, 1, 3]
+check_same_frequency(list1, list2)
+Output: False
+"""
+
+def check_same_frequency(list1, list2):
+    def count_elements(lst):
+        counter = {}
+        for element in lst:
+            counter[element] = counter.get(element, 0) + 1
+        return counter
+    
+    return count_elements(list1) == count_elements(list2)
+
