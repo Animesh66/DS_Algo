@@ -264,4 +264,26 @@ def check_permutation(first_input_list: list[int | str], second_input_list: list
             return False
     return True
 
-print(check_permutation([1, 'a', 3], [1, 3, 'a']))
+# print(check_permutation([1, 'a', 3], [1, 3, 'a']))
+    
+"""
+You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise).
+You have to rotate the image in-place, which means you have to modify the input 2D matrix directly.
+DO NOT allocate another 2D matrix and do the rotation.
+Example:
+Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+Output: [[7,4,1],[8,5,2],[9,6,3]]
+"""
+
+def rotate_matrix(input_matrix: list[list[int]]) -> list[list[int]]:
+    # Transpose the matrix  
+    for row_number in range(len(input_matrix)): # Iterate over the rows
+        for column_number in range(row_number, len(input_matrix)): # Iterate over the columns starting from the current row
+            # Swap the elements at positions (row_number, column_number) and (column_number, row_number)
+            input_matrix[row_number][column_number], input_matrix[column_number][row_number] = input_matrix[column_number][row_number], input_matrix[row_number][column_number]
+     # Reverse each row
+    for row in input_matrix:  # Iterate over each row in the matrix
+        row.reverse()  # Reverse the elements in the current row
+    return input_matrix
+
+print(rotate_matrix([[1,2,3],[4,5,6],[7,8,9]]))
