@@ -455,4 +455,17 @@ print(output_tuple)  # Expected output: (1, 5, 9)
 def get_diagonal(input_tuple):
     return tuple(input_tuple[i][i] for i in range(len(input_tuple)))
 
-print(get_diagonal(((1, 2, 3),(4, 5, 6),(7, 8, 9))))
+# print(get_diagonal(((1, 2, 3),(4, 5, 6),(7, 8, 9))))
+
+"""
+Write a function that takes two tuples and returns a tuple containing the common elements of the input tuples.
+Example
+tuple1 = (1, 2, 3, 4, 5)
+tuple2 = (4, 5, 6, 7, 8)
+output_tuple = common_elements(tuple1, tuple2)
+print(output_tuple)  # Expected output: (4, 5)
+"""
+def common_elements(tuple1, tuple2):
+    return tuple(item for item in tuple1 if item in tuple2)
+
+print(common_elements((1, 2, 3, 4, 5),(4, 5, 6, 7, 8)))
