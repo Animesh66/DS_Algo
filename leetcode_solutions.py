@@ -251,4 +251,17 @@ def contains_duplicate(input_list: list[int]) -> bool:
             return True
     return False
 
-print(contains_duplicate([1,2,3]))
+# print(contains_duplicate([1,2,3]))
+
+"""
+Check if two given lists are permutation of each other or not.
+"""
+def check_permutation(first_input_list: list[int | str], second_input_list: list[int | str]) -> bool:
+    if len(first_input_list) != len(second_input_list):
+        return False
+    for item in first_input_list:
+        if item not in second_input_list:
+            return False
+    return True
+
+print(check_permutation([1, 'a', 3], [1, 3, 'a']))
