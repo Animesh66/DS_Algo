@@ -144,8 +144,8 @@ def find_maximum_product(input_list: list[int]) -> int:
     # Return the product of the two largest numbers
     return max1 * max2  # O(1), constant time multiplication
  
-input_list1 = [1, 7, 3, 4, 9, 5]
-print(find_maximum_product(input_list1))
+# input_list1 = [1, 7, 3, 4, 9, 5]
+# print(find_maximum_product(input_list1))
 
 """
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
@@ -165,6 +165,19 @@ def find_two_sum(input_list: list[int], target: int) -> list[int]:
          else:
             seen[num] = index
 
+"""
+Given 2D list calculate the sum of diagonal elements.
+Example
+myList2D= [[1,2,3],[4,5,6],[7,8,9]] 
+ 
+diagonal_sum(myList2D) # 15
+"""
+def diagonal_sum(input_list: list[int]) -> int:
+    diagonal_sum = 0
+    for index, element in enumerate(input_list):
+        diagonal_sum += element[index]
+    return diagonal_sum
 
-input_list = [2,7,11,15]
-print(find_two_sum(input_list, 9))
+
+input_list = [[1,2,3],[4,5,6],[7,8,9]] 
+print(diagonal_sum(input_list))
