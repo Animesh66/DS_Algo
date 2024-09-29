@@ -387,3 +387,60 @@ def check_same_frequency(list1, list2):
     
     return count_elements(list1) == count_elements(list2)
 
+
+"""
+Write a function that calculates the sum and product of all elements in a tuple of numbers.
+Example
+input_tuple = (1, 2, 3, 4)
+sum_result, product_result = sum_product(input_tuple)
+print(sum_result, product_result)  # Expected output: 10, 24
+"""
+def calculate_sum_and_product(input_tuple: tuple[int]) -> tuple[int]:
+    sum = 0
+    product = 1
+    for element in input_tuple:
+        sum += element
+        product *= element
+    return (sum, product)
+
+# print(calculate_sum_and_product((1, 2, 3, 4)))
+
+"""
+Create a function that takes two tuples and returns a tuple containing the element-wise sum of the input tuples.
+Example
+tuple1 = (1, 2, 3)
+tuple2 = (4, 5, 6)
+output_tuple = tuple_elementwise_sum(tuple1, tuple2)
+print(output_tuple)  # Expected output: (5, 7, 9)
+"""
+def tuple_elementwise_sum(first_tuple: tuple[int], second_tuple: tuple[int]):
+    combined = list(zip(first_tuple, second_tuple))
+    output_list = []
+    for items in combined:
+        output_list.append(items[0] + items[1])
+    return tuple(output_list)
+
+# print(tuple_elementwise_sum((1, 2, 3), (4, 5, 6)))
+
+"""
+Write a function that takes a tuple and a value, and returns a new tuple with the value inserted at the beginning of the original tuple.
+Example
+input_tuple = (2, 3, 4)
+value_to_insert = 1
+output_tuple = insert_value_front(input_tuple, value_to_insert)
+print(output_tuple)  # Expected output: (1, 2, 3, 4)
+"""
+def insert_value_front(input_tuple: tuple[int], value_to_insert: int):
+    return (value_to_insert,) + input_tuple
+
+"""
+Write a function that takes a tuple of strings and concatenates them, separating each string with a space.
+Example
+input_tuple = ('Hello', 'World', 'from', 'Python')
+output_string = concatenate_strings(input_tuple)
+print(output_string)  # Expected output: 'Hello World from Python'
+"""
+def concatenate_strings(input_tuple):
+    return " ".join(input_tuple)
+
+# print(concatenate_strings(('Hello', 'World', 'from', 'Python')))
