@@ -720,4 +720,4 @@ def roman_to_interger(roman: str) -> int:
     return total
 
 
-print(roman_to_interger('IV'))
+print(roman_to_interger('XII'))
