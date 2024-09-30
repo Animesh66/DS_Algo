@@ -720,4 +720,12 @@ def roman_to_interger(roman: str) -> int:
     return total
 
 
-print(roman_to_interger('XII'))
+# print(roman_to_interger('XII'))
+
+"""
+Write a method to convert from decimal to binary number.
+"""
+
+
+def decimal_to_binary(decimal: int) -> int:
+    return decimal % 2 + 10 * decimal_to_binary(decimal/2)
