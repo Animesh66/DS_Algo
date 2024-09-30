@@ -736,7 +736,7 @@ def decimal_to_binary(decimal: int) -> int:
         return decimal % 2 + 10 * decimal_to_binary(int(decimal/2))
 
 
-print(decimal_to_binary(12))
+# print(decimal_to_binary(12))
 
 """
 Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
@@ -760,4 +760,26 @@ Output: true
 
 
 def check_opening_closing_brackets(input_str: str) -> bool:
-    pass
+    # Create a stack to store the opening brackets.
+
+    opening_brackets = ["(", "{", "["]
+    closing_brackets = [")", "}", "]"]
+    bracket_stack = []
+    # Loop over the items to go over the brackets.
+    for item in input_str:
+        if item in opening_brackets:
+            bracket_stack.append(item)
+        if item in closing_brackets:
+            if len(bracket_stack) == 0:
+                return False
+            top = bracket_stack[len(bracket_stack) - 1]
+            if item == ")" and top == "(":
+                bracket_stack.pop()
+            if item == "}" and top == "{":
+                bracket_stack.pop()
+            if item == "]" and top == "[":
+                bracket_stack.pop()
+    return len(bracket_stack) == 0
+
+
+print(check_opening_closing_brackets(input_str="(]"))
