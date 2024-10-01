@@ -812,7 +812,7 @@ def find_divisible_pairs(input_list: list[int], k: int) -> bool:
     remainder_count = defaultdict(int)
 
     # Count frequencies of the remainder when elements are divided by k
-    for num in arr:
+    for num in input_list:
         remainder = num % k
         remainder_count[remainder] += 1
 
