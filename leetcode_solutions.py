@@ -12,6 +12,9 @@ missing_number([1, 2, 3, 4, 6], 6) # 5
 """
 
 
+from collections import defaultdict
+
+
 def missing_number(input_list: list[int], n: int):
     # Calculate the sum of first n natural numbers
     total = n * (n + 1) // 2
@@ -782,4 +785,51 @@ def check_opening_closing_brackets(input_str: str) -> bool:
     return len(bracket_stack) == 0
 
 
-print(check_opening_closing_brackets(input_str="(]"))
+# print(check_opening_closing_brackets(input_str="(]"))
+
+"""
+Given an array of integers arr of even length n and an integer k.
+We want to divide the array into exactly n / 2 pairs 
+such that the sum of each pair is divisible by k.
+Return true If you can find a way to do that or false otherwise.
+Example 1:
+Input: arr = [1,2,3,4,5,10,6,7,8,9], k = 5
+Output: true
+Explanation: Pairs are (1,9),(2,8),(3,7),(4,6) and (5,10).
+Example 2:
+Input: arr = [1,2,3,4,5,6], k = 7
+Output: true
+Explanation: Pairs are (1,6),(2,5) and(3,4).
+Example 3:
+Input: arr = [1,2,3,4,5,6], k = 10
+Output: false
+Explanation: You can try all possible pairs to see that there is no way to divide arr into 3 pairs each with sum divisible by 10.
+"""
+
+
+def find_divisible_pairs(input_list: list[int], k: int) -> bool:
+    # Create a dictionary to store frequencies of remainders
+    remainder_count = defaultdict(int)
+
+    # Count frequencies of the remainder when elements are divided by k
+    for num in arr:
+        remainder = num % k
+        remainder_count[remainder] += 1
+
+    # Iterate through the unique remainders
+    for rem in remainder_count:
+        # Special case: if the remainder is 0, the count of these numbers must be even
+        if rem == 0:
+            if remainder_count[rem] % 2 != 0:
+                return False
+        # Special case: if remainder is exactly half of k (only possible when k is even),
+        # we also need an even number of such elements
+        elif rem * 2 == k:
+            if remainder_count[rem] % 2 != 0:
+                return False
+        # For all other cases, check if remainder_count[rem] == remainder_count[k - rem]
+        else:
+            if remainder_count[rem] != remainder_count[k - rem]:
+                return False
+
+    return True
