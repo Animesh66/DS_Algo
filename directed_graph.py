@@ -1,4 +1,4 @@
-class WeightedGraph:
+class DirectedGraph:
     """
     This is a graph class represented with adjacency list format.
     Graph can be implemented using either adjacency list format 
@@ -135,7 +135,7 @@ class WeightedGraph:
         # Visit all the vertex iteratively and skip the parent vertex and recursively visit all the vertex.
 
 
-graph = WeightedGraph()
+graph = DirectedGraph()
 graph.add_vertex('A')
 graph.add_vertex('B')
 graph.add_vertex('C')
