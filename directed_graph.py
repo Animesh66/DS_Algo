@@ -118,21 +118,40 @@ class DirectedGraph:
         Mehod will return true if the graph has cycle otherwise return false.
         """
         #  Create a set of all visisted vertex
+        all_vertex = {value for value in self.adj_list.keys()}
+        visiting_vertex = set()
         visited_vertex = set()
         # iteratively visit all vertex and do a breath first search for all the vertex
         # and find if the vertex is in visted set or not
-        for vertex in self.adj_list.keys():
-            if vertex not in visited_vertex and self.__has_cycle(vertex, None, visited_vertex):
+        while len(all_vertex) != 0:
+            current = list(all_vertex)[0]
+            if self.__has_cycle(current, all_vertex,
+                                visiting_vertex, visited_vertex):
                 return True
         return False
 
-    def __has_cycle(self, vertex: str, parent_vertex: str | None, visited_vertex: set[str]) -> bool:
+    def __has_cycle(self, vertex: str,
+                    all_vertex: set,
+                    visiting: set,
+                    visited_vertex: set) -> bool:
         """
         Private recursive method for doing a breadth first seach algorithm.
         """
-        #  First put the current vertex to the visisted set.
-        visited_vertex.add(vertex)
+        #  First put remove the first vertex to the visitng  vertex.
+        all_vertex.remove(vertex)
+        visiting.add(vertex)
         # Visit all the vertex iteratively and skip the parent vertex and recursively visit all the vertex.
+        for neighbour in self.adj_list.get(vertex):
+            for node in neighbour:
+                if node in visited_vertex:
+                    continue
+                if node in visiting:
+                    return True
+                if self.__has_cycle(
+                        node, all_vertex, visited_vertex, visited_vertex):
+                    True
+                visiting.remove(node)
+                visited_vertex.add(node)
 
     def depth_first_search_direct_graph(self, vertex: str):
         """
@@ -141,7 +160,7 @@ class DirectedGraph:
         """
         self.__depth_first_search_direct_graph(vertex, set())
 
-    def __depth_first_search_direct_graph(self, vertex: str, visited_nodes: set):
+    def __depth_first_search_direct_graph(self, vertex: str, visited_nodes: set) -> bool:
         """
         Recursive private method to visit the neighbouring node recursively.
         """
@@ -186,13 +205,15 @@ graph = DirectedGraph()
 graph.add_vertex('A')
 graph.add_vertex('B')
 graph.add_vertex('C')
-graph.add_vertex('D')
+# graph.add_vertex('D')
 graph.add_edge('A', 'B', 2)
-# graph.add_edge('A', 'C', 5)
-graph.add_edge('C', 'D', 7)
+graph.add_edge('B', 'C', 5)
+graph.add_edge('A', 'C', 3)
+# graph.add_edge('C', 'D', 7)
 # graph.remove_edge('A', 'B')
 # graph.remove_edge('B', 'C')
 # graph.remove_edge('B', 'D')
 # graph.remove_vertex('A')
-graph.breadth_first_search_directed_graph('C')
+# graph.breadth_first_search_directed_graph('C')
 # graph.print_graph()
+graph.has_cycle()
