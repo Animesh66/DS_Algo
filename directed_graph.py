@@ -134,6 +134,23 @@ class DirectedGraph:
         visited_vertex.add(vertex)
         # Visit all the vertex iteratively and skip the parent vertex and recursively visit all the vertex.
 
+    def depth_first_search_direct_graph(self, vertex: str):
+        """
+        This is a depth first seach for the directed grap.
+        In depth first search we visit each node and its neighbour recusively.
+        """
+        self.__depth_first_search_direct_graph(vertex, set())
+
+    def __depth_first_search_direct_graph(self, vertex: str, visited_nodes: set):
+        # Visit the vertex and then add the vertex to the set.
+        print(vertex)
+        visited_nodes.add(vertex)
+        # recursively visit its neighbour and if the vertex is not visited then visit it.
+        for vertex in self.adj_list[vertex]:
+            for node in vertex:
+                if node not in visited_nodes:
+                    self.__depth_first_search_direct_graph(node, visited_nodes)
+
 
 graph = DirectedGraph()
 graph.add_vertex('A')
@@ -143,8 +160,9 @@ graph.add_vertex('D')
 graph.add_edge('A', 'B', 2)
 graph.add_edge('A', 'C', 5)
 graph.add_edge('C', 'D', 7)
-graph.remove_edge('A', 'B')
+# graph.remove_edge('A', 'B')
 # graph.remove_edge('B', 'C')
 # graph.remove_edge('B', 'D')
 # graph.remove_vertex('A')
+graph.depth_first_search_direct_graph('A')
 graph.print_graph()
