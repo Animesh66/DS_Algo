@@ -158,6 +158,29 @@ class DirectedGraph:
         else:
             raise AssertionError(f"{vertex} is not a valid vertex.")
 
+    def breadth_first_search_directed_graph(self, vertex: str):
+        """
+        In breadth first seach we visit the node and all its neighbour before
+        visiting other nodes.
+        """
+        if not self.adj_list.get(vertex):
+            return
+        # Initialize a set to keep track of visited nodes.
+        # Initialize a set to add the not visited neighbours in the queue
+        visited_nodes = set()
+        queue = []
+        queue.append(vertex)
+        while len(queue) != 0:
+            current_vertex = queue.pop(0)
+            if current_vertex in visited_nodes:
+                continue
+            print(current_vertex)
+            visited_nodes.add(current_vertex)
+            for neighbour in self.adj_list.get(vertex):
+                for node in neighbour:
+                    if node not in visited_nodes:
+                        queue.append(node)
+
 
 graph = DirectedGraph()
 graph.add_vertex('A')
@@ -171,5 +194,5 @@ graph.add_edge('C', 'D', 7)
 # graph.remove_edge('B', 'C')
 # graph.remove_edge('B', 'D')
 # graph.remove_vertex('A')
-graph.depth_first_search_direct_graph('C')
-graph.print_graph()
+graph.breadth_first_search_directed_graph('C')
+# graph.print_graph()
