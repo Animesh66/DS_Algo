@@ -149,10 +149,14 @@ class DirectedGraph:
         print(vertex)
         visited_nodes.add(vertex)
         # recursively visit its neighbour and if the vertex is not visited then visit it.
-        for vertex in self.adj_list[vertex]:
-            for node in vertex:
-                if node not in visited_nodes:
-                    self.__depth_first_search_direct_graph(node, visited_nodes)
+        if self.adj_list.get(vertex):
+            for vertex in self.adj_list.get(vertex):
+                for node in vertex:
+                    if node not in visited_nodes:
+                        self.__depth_first_search_direct_graph(
+                            node, visited_nodes)
+        else:
+            raise AssertionError(f"{vertex} is not a valid vertex.")
 
 
 graph = DirectedGraph()
@@ -167,5 +171,5 @@ graph.add_edge('C', 'D', 7)
 # graph.remove_edge('B', 'C')
 # graph.remove_edge('B', 'D')
 # graph.remove_vertex('A')
-graph.depth_first_search_direct_graph('A')
+graph.depth_first_search_direct_graph('C')
 graph.print_graph()
