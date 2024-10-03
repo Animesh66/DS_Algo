@@ -142,6 +142,9 @@ class DirectedGraph:
         self.__depth_first_search_direct_graph(vertex, set())
 
     def __depth_first_search_direct_graph(self, vertex: str, visited_nodes: set):
+        """
+        Recursive private method to visit the neighbouring node recursively.
+        """
         # Visit the vertex and then add the vertex to the set.
         print(vertex)
         visited_nodes.add(vertex)
@@ -158,7 +161,7 @@ graph.add_vertex('B')
 graph.add_vertex('C')
 graph.add_vertex('D')
 graph.add_edge('A', 'B', 2)
-graph.add_edge('A', 'C', 5)
+# graph.add_edge('A', 'C', 5)
 graph.add_edge('C', 'D', 7)
 # graph.remove_edge('A', 'B')
 # graph.remove_edge('B', 'C')
