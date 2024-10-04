@@ -915,4 +915,35 @@ def match_index_of_two_string(needle: str, haystack: str) -> int:
     return haystack.find(needle)
 
 
-print(match_index_of_two_string("sad", "sadbutsad"))
+print(match_index_of_two_string("leeto", "leetcode"))
+
+"""
+Given a sorted array of distinct integers and a target value, return the index if the target is found. 
+If not, return the index where it would be if it were inserted in order.
+You must write an algorithm with O(log n) runtime complexity.
+
+Example 1:
+Input: nums = [1,3,5,6], target = 5
+Output: 2
+Example 2:
+Input: nums = [1,3,5,6], target = 2
+Output: 1
+Example 3:
+Input: nums = [1,3,5,6], target = 7
+Output: 4
+"""
+
+
+def find_insert_index_of_k(input_list: list[int], taget: int) -> int:
+    # In order to make it a O(logn) so use binary search instead of liner search.
+    left, right = 0, len(input_list) - 1
+    while left <= right:
+        mid = (left + right) // 2  # Find the middle index
+        if input_list[mid] == taget:
+            return mid  # Target found, return its index
+        elif input_list[mid] < taget:
+            left = mid + 1  # Move the search to the right half
+        else:
+            right = mid - 1  # Move the search to the left half
+
+    return left  # If not found, return the index where it should be inserted
