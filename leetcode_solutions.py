@@ -833,3 +833,32 @@ def find_divisible_pairs(input_list: list[int], k: int) -> bool:
                 return False
 
     return True
+
+
+"""
+Write a function to find the longest common prefix string amongst an array of strings.
+If there is no common prefix, return an empty string "".
+Example 1:
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
+Example 2:
+Input: strs = ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input strings.
+"""
+
+
+def longest_common_prefix(input_list: list[str]):
+    if not input_list:
+        return ""
+    # Start with the first word as the prefix
+    prefix = input_list[0]
+    # Start with the next words except the first.
+    for string in input_list[1:]:
+        # Reduce the prefix until it matches the start of the current string
+        while not string.startswith(prefix):
+            prefix = prefix[:-1]
+            if not prefix:
+                return ""
+
+    return prefix
