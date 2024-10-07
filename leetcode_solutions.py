@@ -949,4 +949,34 @@ def find_insert_index_of_k(input_list: list[int], taget: int) -> int:
     return left  # If not found, return the index where it should be inserted
 
 
-print(find_insert_index_of_k([1, 3, 5, 6], 7))
+# print(find_insert_index_of_k([1, 3, 5, 6], 7))
+
+"""
+Given a string s consisting of words and spaces, 
+return the length of the last word in the string.
+A word is a maximal 
+substring
+ consisting of non-space characters only.
+Example 1:
+Input: s = "Hello World"
+Output: 5
+Explanation: The last word is "World" with length 5.
+Example 2:
+Input: s = "   fly me   to   the moon  "
+Output: 4
+Explanation: The last word is "moon" with length 4.
+Example 3:
+Input: s = "luffy is still joyboy"
+Output: 6
+Explanation: The last word is "joyboy" with length 6.
+"""
+
+
+def lenth_of_last_word(input_word: str) -> int:
+    # Remove the leading and ending space and split the word
+    words = input_word.strip().split(" ")
+    # Return the last word and remove the leading space if any
+    return len(words[-1].lstrip())
+
+
+print(lenth_of_last_word("luffy is still joyboy"))
