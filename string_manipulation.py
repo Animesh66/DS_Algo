@@ -41,7 +41,7 @@ def rotation_string(first_string: str, second_string: str) -> bool:
     #  First check if both string have same length or not.
     if len(first_string) != len(second_string):
         return False
-    #  Check if both the secpmd string is present on first string or not.
+    #  Check if both the char string is present on first string or not.
     if second_string in (first_string + first_string):
         return True
     return False
