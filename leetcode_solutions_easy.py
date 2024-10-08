@@ -1,5 +1,6 @@
 """
-You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
+You are given a large integer represented as an integer array digits, 
+where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
 Increment the large integer by one and return the resulting array of digits.
 Example 1:
 Input: digits = [1,2,3]
@@ -20,3 +21,14 @@ Explanation: The array represents the integer 9.
 Incrementing by one gives 9 + 1 = 10.
 Thus, the result should be [1,0].
 """
+
+
+def increment_largest_int_by_one(input_list: list[int]) -> list[int]:
+    input_int = 0
+    for index, element in enumerate(input_list[::-1]):
+        input_int += element * 10**index
+    input_int += 1
+    return list(str(input_int))
+
+
+print(increment_largest_int_by_one([9]))
