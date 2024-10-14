@@ -33,7 +33,7 @@ def increment_largest_int_by_one(input_list: list[int]) -> list[int]:
     return list(str(input_int))
 
 
-print(increment_largest_int_by_one([9]))
+# print(increment_largest_int_by_one([9]))
 
 """
 Given two binary strings a and b, return their sum as a binary string.
@@ -48,3 +48,41 @@ Constraints:
 a and b consist only of '0' or '1' characters.
 Each string does not contain leading zeros except for the zero itself.
 """
+
+
+"""
+You are climbing a staircase. It takes n steps to reach the top.
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+Example 1:
+Input: n = 2
+Output: 2
+Explanation: There are two ways to climb to the top.
+1. 1 step + 1 step
+2. 2 steps
+Example 2:
+Input: n = 3
+Output: 3
+Explanation: There are three ways to climb to the top.
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step
+"""
+
+def climb_stairs(n: int):
+    # Base cases
+    if n == 1:
+        return 1
+    elif n == 2:
+        return 2
+
+    # Initialize variables for previous steps
+    first = 1
+    second = 2
+
+    # Calculate the number of ways to reach each step
+    for i in range(3, n + 1):
+        third = first + second
+        first = second
+        second = third
+
+    return second
