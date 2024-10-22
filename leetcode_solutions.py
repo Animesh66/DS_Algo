@@ -34,14 +34,21 @@ Find first repeated and non repeated character of a given string.
 def find_first_non_repeated_char(input_str: str) -> str:
     char_dict = {}
     for char in input_str.replace(" ", ""):
-        if char not in char_dict:
-            char_dict[char.lower()] = 1
+        char_lower = char.lower()
+        if char_lower not in char_dict:
+            char_dict[char_lower] = 1
         else:
-            char_dict[char.lower()] += 1
-    for char, frequency in char_dict.items():
-        if frequency == 1:
+            char_dict[char_lower] += 1
+    for char in input_str:
+        if char_dict[char.lower()] == 1:
             return char
-    return None
+    return ""
+
+
+print(find_first_non_repeated_char("sTreSS"))
+print(find_first_non_repeated_char("a"))
+print(find_first_non_repeated_char("aabbcc"))
+print(find_first_non_repeated_char("Stress"))
 
 
 def find_first_repeated_char(input_str: str) -> str:
@@ -979,4 +986,4 @@ def lenth_of_last_word(input_word: str) -> int:
     return len(words[-1].lstrip())
 
 
-print(lenth_of_last_word("luffy is still joyboy"))
+# print(lenth_of_last_word("luffy is still joyboy"))
