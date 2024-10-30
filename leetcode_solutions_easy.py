@@ -145,27 +145,16 @@ def merge_sorted_arrays(num1: list[int], num2: list[int], m: int, n: int) -> lis
         j -= 1
         k -= 1
 
+
 """
 Given the root of a binary tree, return the inorder traversal of its nodes' values.
-
- 
-
 Example 1:
-
 Input: root = [1,null,2,3]
-
 Output: [1,3,2]
-
 Explanation:
-
-
-
 Example 2:
-
 Input: root = [1,2,3,4,5,null,8,null,null,6,7,9]
-
 Output: [4,2,6,5,7,1,3,9,8]
-
 Explanation:
 Example 3:
 Input: root = []
@@ -175,14 +164,18 @@ Input: root = [1]
 Output: [1]
 """
 # Definition for a binary tree node.
+
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
+
 def inorder_traversal(root):
     result = []
+
     def traverse(node):
         if node:
             traverse(node.left)  # Visit left subtree
@@ -193,6 +186,8 @@ def inorder_traversal(root):
     return result
 
 # Helper function to build a tree from a list
+
+
 def build_tree(values):
     if not values:
         return None
@@ -210,4 +205,3 @@ def build_tree(values):
             queue.append(current.right)
         i += 1
     return root
-
